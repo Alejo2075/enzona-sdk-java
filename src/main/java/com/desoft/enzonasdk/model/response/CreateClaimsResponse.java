@@ -10,6 +10,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CreateClaimsResponse {
-    private String message; // Placeholder field, adjust according to actual API response
+    private String statusCode;
+    private String message;
 }
 

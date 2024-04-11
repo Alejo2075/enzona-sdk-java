@@ -4,6 +4,11 @@ import com.desoft.enzonasdk.exception.EnzonaException;
 import com.desoft.enzonasdk.model.request.CreateClaimsRequest;
 import com.desoft.enzonasdk.model.response.CreateClaimsResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
 
@@ -30,7 +35,31 @@ public class ClaimApi {
      * @throws EnzonaException If there is an issue with network communication or processing the request/response.
      */
     public CreateClaimsResponse createClaims(CreateClaimsRequest request) throws EnzonaException {
+        try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
+            String url = baseUrl + "createClaims";
+            HttpPost httpPost = new HttpPost(url);
 
+            httpPost.setHeader("Authorization", "Bearer " + authClient.getAccessToken());
+            httpPost.setHeader("Content-Type", "application/json");
+
+            // Serialize request to JSON using ObjectMapper instead of JsonUtil for consistency with your environment setup
+            String json = objectMapper.writeValueAsString(request);
+            StringEntity entity = new StringEntity(json);
+            httpPost.setEntity(entity);
+
+            // Execute HTTP request
+            var response = httpClient.execute(httpPost);
+            String jsonResponse = EntityUtils.toString(response.getEntity());
+
+            if (response.getStatusLine().getStatusCode() != 200) {
+                throw new EnzonaException("Failed to create claim: " + response.getStatusLine().getStatusCode() + " " + jsonResponse);
+            }
+
+            // Deserialize response from JSON
+            return objectMapper.readValue(jsonResponse, CreateClaimsResponse.class);
+        } catch (Exception e) {
+            throw new EnzonaException("Exception occurred while creating claim: " + e.getMessage(), e);
+        }
     }
 
 }
