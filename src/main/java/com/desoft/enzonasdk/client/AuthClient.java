@@ -14,16 +14,31 @@ import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 
+/**
+ * Client for authenticating with the Enzona API and retrieving an access token.
+ */
 public class AuthClient {
     private final String consumerKey;
     private final String consumerSecret;
     private final String tokenEndpoint = "https://api.enzona.net/token";
 
+    /**
+     * Creates an instance of AuthClient using the provided consumer key and secret.
+     *
+     * @param consumerKey    The consumer key issued by Enzona for API authentication.
+     * @param consumerSecret The consumer secret issued by Enzona for API authentication.
+     */
     public AuthClient(String consumerKey, String consumerSecret) {
         this.consumerKey = consumerKey;
         this.consumerSecret = consumerSecret;
     }
 
+    /**
+     * Retrieves an access token from Enzona's authentication server.
+     *
+     * @return The access token used for subsequent API requests.
+     * @throws EnzonaException if there is a failure in retrieving the access token.
+     */
     public String getAccessToken() throws EnzonaException {
         try {
             HttpClient httpClient = HttpClients.createDefault();
@@ -57,7 +72,9 @@ public class AuthClient {
         }
     }
 
-    // Inner class to handle the JSON response for token request
+    /**
+     * Inner class to handle the JSON response for token request.
+     */
     private static class TokenResponse {
         private String access_token;
 

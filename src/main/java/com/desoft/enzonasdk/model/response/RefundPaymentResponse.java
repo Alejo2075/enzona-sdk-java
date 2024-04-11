@@ -10,7 +10,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 public class RefundPaymentResponse {
-    private String transactionStatusCode;
+    private String statusCode;
     private String parentPaymentUuid;
     private String updatedAt;
     private String transactionDenom;
