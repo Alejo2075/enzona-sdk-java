@@ -4,7 +4,9 @@ import com.desoft.enzonasdk.client.PaymentApi;
 import com.desoft.enzonasdk.exception.EnzonaException;
 import com.desoft.enzonasdk.model.request.*;
 import com.desoft.enzonasdk.model.response.*;
+import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -22,9 +24,9 @@ import org.junit.Before;
 public class PaymentApiTest {
 
     @Mock
-    private HttpClient mockHttpClient;
+    private CloseableHttpClient mockHttpClient;
     @Mock
-    private HttpResponse mockResponse;
+    private CloseableHttpResponse mockResponse;
     @Mock
     private StatusLine mockStatusLine;
 
@@ -34,6 +36,7 @@ public class PaymentApiTest {
     public void setUp() {
         MockitoAnnotations.initMocks(this);
         paymentApi = new PaymentApi("consumerKey", "consumerSecret");
+        paymentApi.setHttpClient(mockHttpClient);
     }
 
     @Test(expected = EnzonaException.class)

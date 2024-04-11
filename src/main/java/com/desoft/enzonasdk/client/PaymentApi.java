@@ -23,6 +23,7 @@ public class PaymentApi {
 
     private final String baseUrl = "https://api.enzona.net/";
     private final AuthClient authClient;
+    private CloseableHttpClient httpClient = HttpClients.createDefault();
 
     public PaymentApi(String consumerKey, String consumerSecret) {
         this.authClient = new AuthClient(consumerKey, consumerSecret);
@@ -42,7 +43,7 @@ public class PaymentApi {
      * @throws EnzonaException If there is an issue with network communication or processing the request/response.
      */
     public ConfirmPaymentResponse confirmPayment(String transactionUuid, ConfirmPaymentRequest request) throws EnzonaException {
-        try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
+        try {
             String url = baseUrl + "payments/" + transactionUuid + "/confirm";
             HttpPost httpPost = new HttpPost(url);
 
@@ -71,7 +72,6 @@ public class PaymentApi {
         }
     }
 
-
     /**
      * Completes a payment for the given transaction UUID.
      * <p>
@@ -84,7 +84,7 @@ public class PaymentApi {
      * @throws EnzonaException If there is a problem with the network communication.
      */
     public CompletePaymentResponse completePayment(String transactionUuid) throws EnzonaException {
-        try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
+        try {
             String url = baseUrl + "payments/" + transactionUuid + "/complete";
             HttpPost httpPost = new HttpPost(url);
 
@@ -120,7 +120,7 @@ public class PaymentApi {
      * @throws EnzonaException If there is an issue with network communication or processing the request/response.
      */
     public RefundDetailsResponse getRefundDetails(String transactionUuid) throws EnzonaException {
-        try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
+        try {
             String url = baseUrl + "payments/refund/" + transactionUuid;
             HttpGet httpGet = new HttpGet(url);
 
@@ -157,7 +157,7 @@ public class PaymentApi {
      * @throws EnzonaException If there is an issue with network communication or processing the request/response.
      */
     public RefundsListResponse getRefundsList(RefundsListRequest request) throws  EnzonaException {
-        try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
+        try {
             List<String> queryParams = new ArrayList<>();
 
             if (request.getMerchantUuid() != null) {
@@ -207,7 +207,7 @@ public class PaymentApi {
      * @throws EnzonaException If there is an issue with network communication or processing the request/response.
      */
     public CreatePaymentResponse createPayment(CreatePaymentRequest request) throws EnzonaException {
-        try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
+        try {
             String url = baseUrl + "payments";
             HttpPost httpPost = new HttpPost(url);
 
@@ -249,7 +249,7 @@ public class PaymentApi {
      * @throws EnzonaException If there is an issue with network communication or processing the request/response.
      */
     public PaymentsListResponse getPaymentsList(PaymentsListRequest request) throws EnzonaException {
-        try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
+        try {
             List<String> queryParams = new ArrayList<>();
             if (request.getMerchantUuid() != null) {
                 queryParams.add("merchant_uuid=" + URLEncoder.encode(request.getMerchantUuid(), StandardCharsets.UTF_8));
@@ -288,7 +288,7 @@ public class PaymentApi {
      * @throws EnzonaException If there is an issue with network communication or processing the request/response.
      */
     public PaymentDetailsResponse getPaymentDetails(String transactionUuid) throws EnzonaException {
-        try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
+        try {
             String url = baseUrl + "payments/" + transactionUuid;
             HttpGet httpGet = new HttpGet(url);
 
@@ -320,7 +320,7 @@ public class PaymentApi {
      * @throws EnzonaException If there is an issue with network communication or processing the request/response.
      */
     public CheckoutResponse performCheckout(String uuid) throws EnzonaException {
-        try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
+        try {
             String url = baseUrl + "payments/checkout/" + uuid;
             HttpGet httpGet = new HttpGet(url);
 
@@ -352,7 +352,7 @@ public class PaymentApi {
      * @throws EnzonaException If there is an issue with network communication or processing the request/response.
      */
     public CreateReceiveCodeResponse createReceiveCode(CreateReceiveCodeRequest request) throws EnzonaException {
-        try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
+        try {
             String url = baseUrl + "payments/vendor/code";
             HttpPost httpPost = new HttpPost(url);
 
@@ -391,7 +391,7 @@ public class PaymentApi {
      * @throws EnzonaException If there is an issue with network communication or processing the request/response.
      */
     public ListRefundsResponse listRefunds(ListRefundsRequest request) throws EnzonaException {
-        try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
+        try {
             List<String> queryParams = new ArrayList<>();
             queryParams.add("transaction_uuid=" + URLEncoder.encode(request.getTransactionUuid(), StandardCharsets.UTF_8));
 
@@ -446,7 +446,7 @@ public class PaymentApi {
      * @throws EnzonaException If there is an issue with network communication or processing the request/response.
      */
     public PayProductResponse payProduct(PayProductRequest request) throws EnzonaException {
-        try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
+        try {
             String url = baseUrl + "shop";
             HttpPost httpPost = new HttpPost(url);
 
@@ -485,7 +485,7 @@ public class PaymentApi {
      * @throws EnzonaException If there is an issue with network communication or processing the request/response.
      */
     public CreatePaymentOrderResponse createPaymentOrder(CreatePaymentOrderRequest request) throws EnzonaException {
-        try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
+        try {
             String url = baseUrl + "payment-orders";
             HttpPost httpPost = new HttpPost(url);
 
@@ -524,7 +524,7 @@ public class PaymentApi {
      * @throws EnzonaException If there is an issue with network communication or processing the request/response.
      */
     public CancelPaymentResponse cancelPayment(String transactionUuid) throws EnzonaException {
-        try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
+        try {
             String url = baseUrl + "payments/" + transactionUuid + "/cancel";
             HttpPost httpPost = new HttpPost(url);
 
@@ -559,7 +559,7 @@ public class PaymentApi {
      * @throws EnzonaException If there is an issue with network communication or processing the request/response.
      */
     public RefundPaymentResponse refundPayment(String transactionUuid, RefundPaymentRequest request) throws EnzonaException {
-        try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
+        try {
             String url = baseUrl + "payments/" + transactionUuid + "/refund";
             HttpPost httpPost = new HttpPost(url);
 

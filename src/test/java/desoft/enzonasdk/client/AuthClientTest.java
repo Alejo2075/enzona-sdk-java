@@ -29,6 +29,7 @@ public class AuthClientTest {
     public void setUp() {
         MockitoAnnotations.initMocks(this);
         authClient = new AuthClient("consumerKey", "consumerSecret");
+        authClient.setHttpClient(mockHttpClient);
     }
 
     @Test

@@ -4,6 +4,8 @@ import com.desoft.enzonasdk.client.ClaimApi;
 import com.desoft.enzonasdk.exception.EnzonaException;
 import com.desoft.enzonasdk.model.request.CreateClaimsRequest;
 import com.desoft.enzonasdk.model.response.CreateClaimsResponse;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.impl.client.CloseableHttpClient;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
@@ -20,9 +22,9 @@ import org.junit.Before;
 public class ClaimApiTest {
 
     @Mock
-    private HttpClient mockHttpClient;
+    private CloseableHttpClient mockHttpClient;
     @Mock
-    private HttpResponse mockResponse;
+    private CloseableHttpResponse mockResponse;
     @Mock
     private StatusLine mockStatusLine;
 
@@ -32,6 +34,7 @@ public class ClaimApiTest {
     public void setUp() {
         MockitoAnnotations.initMocks(this);
         claimApi = new ClaimApi("consumerKey", "consumerSecret");
+        claimApi.setHttpClient(mockHttpClient);
     }
 
     @Test(expected = EnzonaException.class)

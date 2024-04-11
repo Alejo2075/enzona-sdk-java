@@ -1,7 +1,6 @@
 package desoft.util;
 
 import com.desoft.enzonasdk.util.JsonUtil;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import org.junit.Test;
 import static org.junit.Assert.*;
 

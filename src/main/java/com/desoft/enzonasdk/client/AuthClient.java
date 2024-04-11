@@ -2,6 +2,7 @@ package com.desoft.enzonasdk.client;
 
 import com.desoft.enzonasdk.exception.EnzonaException;
 import com.desoft.enzonasdk.util.JsonUtil;
+import lombok.Data;
 import org.apache.http.HttpHeaders;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
@@ -17,7 +18,10 @@ import java.util.List;
 /**
  * Client for authenticating with the Enzona API and retrieving an access token.
  */
+@Data
 public class AuthClient {
+
+    private HttpClient httpClient;
     private final String consumerKey;
     private final String consumerSecret;
     private final String tokenEndpoint = "https://api.enzona.net/token";
@@ -41,7 +45,7 @@ public class AuthClient {
      */
     public String getAccessToken() throws EnzonaException {
         try {
-            HttpClient httpClient = HttpClients.createDefault();
+            httpClient = HttpClients.createDefault();
             HttpPost request = new HttpPost(tokenEndpoint);
 
             // Encode Consumer Key and Secret

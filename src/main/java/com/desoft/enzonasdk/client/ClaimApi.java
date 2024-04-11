@@ -4,6 +4,7 @@ import com.desoft.enzonasdk.exception.EnzonaException;
 import com.desoft.enzonasdk.model.request.CreateClaimsRequest;
 import com.desoft.enzonasdk.model.response.CreateClaimsResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.Data;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -12,10 +13,13 @@ import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
 
+@Data
 public class ClaimApi {
 
     private final String baseUrl = "https://api.enzona.net/payment/";
     private final AuthClient authClient;
+
+    private CloseableHttpClient httpClient = HttpClients.createDefault();
 
     private final ObjectMapper objectMapper = new ObjectMapper();
 
@@ -35,7 +39,7 @@ public class ClaimApi {
      * @throws EnzonaException If there is an issue with network communication or processing the request/response.
      */
     public CreateClaimsResponse createClaims(CreateClaimsRequest request) throws EnzonaException {
-        try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
+        try  {
             String url = baseUrl + "createClaims";
             HttpPost httpPost = new HttpPost(url);
 
