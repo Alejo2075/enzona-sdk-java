@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.desoft.enzonasdk.client"},{"l":"com.desoft.enzonasdk.exception"},{"l":"com.desoft.enzonasdk.model.request"},{"l":"com.desoft.enzonasdk.model.response"},{"l":"com.desoft.enzonasdk.util"},{"l":"desoft.enzonasdk.client"},{"l":"desoft.util"}];updateSearchResults();
