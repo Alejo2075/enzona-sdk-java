@@ -5,7 +5,7 @@
 
     <groupId>com.desoft</groupId>
     <artifactId>enzona-sdk</artifactId>
-    <version>0.9.0</version>
+    <version>0.9-SNAPSHOT</version>
 
     <name>Enzona SDK for Java</name>
     <description>A Java SDK for interacting with the Enzona API.</description>
@@ -43,11 +43,11 @@
 
     <distributionManagement>
         <snapshotRepository>
-            <id>osr</id>
+            <id>ossrh</id>
             <url>https://oss.sonatype.org/content/repositories/snapshots</url>
         </snapshotRepository>
         <repository>
-            <id>osr</id>
+            <id>ossrh</id>
             <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
         </repository>
     </distributionManagement>
