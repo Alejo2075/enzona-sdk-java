@@ -7,9 +7,9 @@
     <artifactId>enzona-sdk</artifactId>
     <version>0.9.1</version>
 
-    <name>Enzona SDK for Java</name>
+    <name>Java SDK for Enzona</name>
     <description>A Java SDK for interacting with the Enzona API.</description>
-    <url>https://www.desoft.cu/en</url>
+    <url>https://www.desoft.cu/en/projects/enzona/api/sdk/java</url>
 
     <licenses>
         <license>

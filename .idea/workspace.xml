@@ -4,112 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5d175f14-46a7-4d59-bc0c-79f1b41f4094" name="Changes" comment="fixed pom">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="5d175f14-46a7-4d59-bc0c-79f1b41f4094" name="Changes" comment="refactored package name">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/client/AuthClient.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/client/AuthClient.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/client/ClaimApi.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/client/ClaimApi.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/client/PaymentApi.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/client/PaymentApi.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/exception/EnzonaException.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/exception/EnzonaException.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/request/ConfirmPaymentRequest.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/request/ConfirmPaymentRequest.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/request/CreateClaimsRequest.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/request/CreateClaimsRequest.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/request/CreatePaymentOrderRequest.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/request/CreatePaymentOrderRequest.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/request/CreatePaymentRequest.Amount.Details.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/request/CreatePaymentRequest.Amount.Details.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/request/CreatePaymentRequest.Amount.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/request/CreatePaymentRequest.Amount.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/request/CreatePaymentRequest.Item.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/request/CreatePaymentRequest.Item.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/request/CreatePaymentRequest.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/request/CreatePaymentRequest.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/request/CreateReceiveCodeRequest.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/request/CreateReceiveCodeRequest.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/request/ListRefundsRequest.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/request/ListRefundsRequest.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/request/PayProductRequest.Amount.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/request/PayProductRequest.Amount.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/request/PayProductRequest.Item.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/request/PayProductRequest.Item.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/request/PayProductRequest.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/request/PayProductRequest.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/request/PaymentsListRequest.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/request/PaymentsListRequest.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/request/RefundPaymentRequest.Amount.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/request/RefundPaymentRequest.Amount.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/request/RefundPaymentRequest.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/request/RefundPaymentRequest.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/request/RefundsListRequest.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/request/RefundsListRequest.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/CancelPaymentResponse.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/CancelPaymentResponse.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/CheckoutResponse.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/CheckoutResponse.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/CompletePaymentResponse.Amount.Details.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/CompletePaymentResponse.Amount.Details.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/CompletePaymentResponse.Amount.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/CompletePaymentResponse.Amount.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/CompletePaymentResponse.Item.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/CompletePaymentResponse.Item.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/CompletePaymentResponse.Link.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/CompletePaymentResponse.Link.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/CompletePaymentResponse.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/CompletePaymentResponse.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/ConfirmPaymentResponse.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/ConfirmPaymentResponse.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/CreateClaimsResponse.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/CreateClaimsResponse.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/CreatePaymentOrderResponse.Amount.Details.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/CreatePaymentOrderResponse.Amount.Details.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/CreatePaymentOrderResponse.Amount.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/CreatePaymentOrderResponse.Amount.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/CreatePaymentOrderResponse.Item.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/CreatePaymentOrderResponse.Item.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/CreatePaymentOrderResponse.Link.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/CreatePaymentOrderResponse.Link.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/CreatePaymentOrderResponse.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/CreatePaymentOrderResponse.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/CreatePaymentResponse.Amount.Details.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/CreatePaymentResponse.Amount.Details.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/CreatePaymentResponse.Amount.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/CreatePaymentResponse.Amount.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/CreatePaymentResponse.Item.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/CreatePaymentResponse.Item.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/CreatePaymentResponse.Link.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/CreatePaymentResponse.Link.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/CreatePaymentResponse.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/CreatePaymentResponse.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/CreateReceiveCodeResponse.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/CreateReceiveCodeResponse.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/ListRefundsResponse.Refund.Amount.Details.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/ListRefundsResponse.Refund.Amount.Details.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/ListRefundsResponse.Refund.Amount.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/ListRefundsResponse.Refund.Amount.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/ListRefundsResponse.Refund.Item.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/ListRefundsResponse.Refund.Item.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/ListRefundsResponse.Refund.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/ListRefundsResponse.Refund.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/ListRefundsResponse.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/ListRefundsResponse.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/PayProductResponse.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/PayProductResponse.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/PaymentDetailsResponse.Amount.Details.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/PaymentDetailsResponse.Amount.Details.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/PaymentDetailsResponse.Amount.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/PaymentDetailsResponse.Amount.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/PaymentDetailsResponse.Item.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/PaymentDetailsResponse.Item.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/PaymentDetailsResponse.Link.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/PaymentDetailsResponse.Link.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/PaymentDetailsResponse.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/PaymentDetailsResponse.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/PaymentsListResponse.Payment.Amount.Details.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/PaymentsListResponse.Payment.Amount.Details.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/PaymentsListResponse.Payment.Amount.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/PaymentsListResponse.Payment.Amount.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/PaymentsListResponse.Payment.Item.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/PaymentsListResponse.Payment.Item.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/PaymentsListResponse.Payment.Link.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/PaymentsListResponse.Payment.Link.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/PaymentsListResponse.Payment.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/PaymentsListResponse.Payment.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/PaymentsListResponse.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/PaymentsListResponse.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/RefundDetailsResponse.Link.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/RefundDetailsResponse.Link.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/RefundDetailsResponse.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/RefundDetailsResponse.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/RefundPaymentResponse.Link.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/RefundPaymentResponse.Link.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/RefundPaymentResponse.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/RefundPaymentResponse.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/RefundsListResponse.Refund.Amount.Details.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/RefundsListResponse.Refund.Amount.Details.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/RefundsListResponse.Refund.Amount.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/RefundsListResponse.Refund.Amount.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/RefundsListResponse.Refund.Item.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/RefundsListResponse.Refund.Item.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/RefundsListResponse.Refund.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/RefundsListResponse.Refund.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/RefundsListResponse.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/model/response/RefundsListResponse.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/util/JsonUtil.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/com/desoft/enzonasdk/util/JsonUtil.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/serialized-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/serialized-form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/desoft/enzonasdk/client/AuthClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/alejo2075/enzonasdk/client/AuthClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/desoft/enzonasdk/client/ClaimApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/alejo2075/enzonasdk/client/ClaimApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/desoft/enzonasdk/client/PaymentApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/alejo2075/enzonasdk/client/PaymentApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/desoft/enzonasdk/exception/EnzonaException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/alejo2075/enzonasdk/exception/EnzonaException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/desoft/enzonasdk/model/request/ConfirmPaymentRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/alejo2075/enzonasdk/model/request/ConfirmPaymentRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/desoft/enzonasdk/model/request/CreateClaimsRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/alejo2075/enzonasdk/model/request/CreateClaimsRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/desoft/enzonasdk/model/request/CreatePaymentOrderRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/alejo2075/enzonasdk/model/request/CreatePaymentOrderRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/desoft/enzonasdk/model/request/CreatePaymentRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/alejo2075/enzonasdk/model/request/CreatePaymentRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/desoft/enzonasdk/model/request/CreateReceiveCodeRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/alejo2075/enzonasdk/model/request/CreateReceiveCodeRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/desoft/enzonasdk/model/request/ListRefundsRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/alejo2075/enzonasdk/model/request/ListRefundsRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/desoft/enzonasdk/model/request/PayProductRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/alejo2075/enzonasdk/model/request/PayProductRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/desoft/enzonasdk/model/request/PaymentsListRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/alejo2075/enzonasdk/model/request/PaymentsListRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/desoft/enzonasdk/model/request/RefundPaymentRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/alejo2075/enzonasdk/model/request/RefundPaymentRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/desoft/enzonasdk/model/request/RefundsListRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/alejo2075/enzonasdk/model/request/RefundsListRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/desoft/enzonasdk/model/response/CancelPaymentResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/alejo2075/enzonasdk/model/response/CancelPaymentResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/desoft/enzonasdk/model/response/CheckoutResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/alejo2075/enzonasdk/model/response/CheckoutResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/desoft/enzonasdk/model/response/CompletePaymentResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/alejo2075/enzonasdk/model/response/CompletePaymentResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/desoft/enzonasdk/model/response/ConfirmPaymentResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/alejo2075/enzonasdk/model/response/ConfirmPaymentResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/desoft/enzonasdk/model/response/CreateClaimsResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/alejo2075/enzonasdk/model/response/CreateClaimsResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/desoft/enzonasdk/model/response/CreatePaymentOrderResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/alejo2075/enzonasdk/model/response/CreatePaymentOrderResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/desoft/enzonasdk/model/response/CreatePaymentResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/alejo2075/enzonasdk/model/response/CreatePaymentResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/desoft/enzonasdk/model/response/CreateReceiveCodeResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/alejo2075/enzonasdk/model/response/CreateReceiveCodeResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/desoft/enzonasdk/model/response/ListRefundsResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/alejo2075/enzonasdk/model/response/ListRefundsResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/desoft/enzonasdk/model/response/PayProductResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/alejo2075/enzonasdk/model/response/PayProductResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/desoft/enzonasdk/model/response/PaymentDetailsResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/alejo2075/enzonasdk/model/response/PaymentDetailsResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/desoft/enzonasdk/model/response/PaymentsListResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/alejo2075/enzonasdk/model/response/PaymentsListResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/desoft/enzonasdk/model/response/RefundDetailsResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/alejo2075/enzonasdk/model/response/RefundDetailsResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/desoft/enzonasdk/model/response/RefundPaymentResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/alejo2075/enzonasdk/model/response/RefundPaymentResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/desoft/enzonasdk/model/response/RefundsListResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/alejo2075/enzonasdk/model/response/RefundsListResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/desoft/enzonasdk/util/JsonUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/alejo2075/enzonasdk/util/JsonUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/desoft/enzonasdk/client/AuthClientTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/desoft/enzonasdk/client/AuthClientTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/desoft/enzonasdk/client/ClaimApiTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/desoft/enzonasdk/client/ClaimApiTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/desoft/enzonasdk/client/PaymentApiTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/desoft/enzonasdk/client/PaymentApiTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/desoft/util/JsonUtilTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/desoft/util/JsonUtilTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -208,7 +106,7 @@
       <workItem from="1713052464866" duration="736000" />
       <workItem from="1713191917537" duration="5614000" />
       <workItem from="1713242670538" duration="184000" />
-      <workItem from="1713280462602" duration="11413000" />
+      <workItem from="1713280462602" duration="12588000" />
     </task>
     <task id="LOCAL-00001" summary="configured pom.xml">
       <option name="closed" value="true" />
@@ -346,7 +244,15 @@
       <option name="project" value="LOCAL" />
       <updated>1713328523414</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="refactored package name">
+      <option name="closed" value="true" />
+      <created>1713368993718</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1713368993718</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -379,7 +285,8 @@
     <MESSAGE value="added LICENSE.txt" />
     <MESSAGE value="fixed doc" />
     <MESSAGE value="fixed pom" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed pom" />
+    <MESSAGE value="refactored package name" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactored package name" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

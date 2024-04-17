@@ -4,7 +4,7 @@
 The Enzona SDK for Java provides developers with a streamlined way to interact with the Enzona API, enabling the integration of payment functionalities into Java applications. This SDK simplifies the process of making API calls and provides tools for managing payments, refunds, and other financial transactions.
 
 ## Useful Links
-- [Maven Repository](https://search.maven.org/artifact/com.desoft/enzona-sdk/1.0.0/jar)
+- [Maven Repository](https://central.sonatype.com/artifact/io.github.alejo2075/enzona-sdk)
 - [API Documentation](https://your-username.github.io/your-repository/)
 
 ## Features

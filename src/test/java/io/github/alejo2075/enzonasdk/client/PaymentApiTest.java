@@ -1,4 +1,4 @@
-package desoft.enzonasdk.client;
+package io.github.alejo2075.enzonasdk.client;
 
 public class PaymentApiTest {
 

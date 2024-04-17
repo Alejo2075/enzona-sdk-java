@@ -1,4 +1,4 @@
-package desoft.util;
+package io.github.alejo2075.enzonasdk.util;
 
 public class JsonUtilTest {
 
