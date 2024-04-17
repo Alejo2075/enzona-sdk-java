@@ -1,7 +1,5 @@
-com.desoft.enzonasdk.client
-com.desoft.enzonasdk.exception
-com.desoft.enzonasdk.model.request
-com.desoft.enzonasdk.model.response
-com.desoft.enzonasdk.util
-desoft.enzonasdk.client
-desoft.util
+io.github.alejo2075.enzonasdk.client
+io.github.alejo2075.enzonasdk.exception
+io.github.alejo2075.enzonasdk.model.request
+io.github.alejo2075.enzonasdk.model.response
+io.github.alejo2075.enzonasdk.util

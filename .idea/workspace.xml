@@ -4,71 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5d175f14-46a7-4d59-bc0c-79f1b41f4094" name="Changes" comment="refactored package name">
-      <change beforePath="$PROJECT_DIR$/LICENSE.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/allclasses-index.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/allclasses-index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/allpackages-index.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/allpackages-index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/element-list" beforeDir="false" afterPath="$PROJECT_DIR$/doc/element-list" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/help-doc.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/help-doc.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/index-files/index-1.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/index-files/index-1.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/index-files/index-10.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/index-files/index-10.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/index-files/index-11.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/index-files/index-11.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/index-files/index-12.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/index-files/index-12.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/index-files/index-2.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/index-files/index-2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/index-files/index-3.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/index-files/index-3.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/index-files/index-4.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/index-files/index-4.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/index-files/index-5.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/index-files/index-5.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/index-files/index-6.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/index-files/index-6.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/index-files/index-7.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/index-files/index-7.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/index-files/index-8.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/index-files/index-8.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/index-files/index-9.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/index-files/index-9.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/jquery-ui.overrides.css" beforeDir="false" afterPath="$PROJECT_DIR$/doc/jquery-ui.overrides.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/member-search-index.js" beforeDir="false" afterPath="$PROJECT_DIR$/doc/member-search-index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/overview-summary.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/overview-summary.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/overview-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/overview-tree.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/package-search-index.js" beforeDir="false" afterPath="$PROJECT_DIR$/doc/package-search-index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/doc/script.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/search.js" beforeDir="false" afterPath="$PROJECT_DIR$/doc/search.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/serialized-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/serialized-form.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/type-search-index.js" beforeDir="false" afterPath="$PROJECT_DIR$/doc/type-search-index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/alejo2075/enzonasdk/client/AuthClient.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/alejo2075/enzonasdk/client/ClaimApi.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/alejo2075/enzonasdk/client/PaymentApi.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/alejo2075/enzonasdk/exception/EnzonaException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/alejo2075/enzonasdk/model/request/ConfirmPaymentRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/alejo2075/enzonasdk/model/request/CreateClaimsRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/alejo2075/enzonasdk/model/request/CreatePaymentOrderRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/alejo2075/enzonasdk/model/request/CreatePaymentRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/alejo2075/enzonasdk/model/request/CreateReceiveCodeRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/alejo2075/enzonasdk/model/request/ListRefundsRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/alejo2075/enzonasdk/model/request/PayProductRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/alejo2075/enzonasdk/model/request/PaymentsListRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/alejo2075/enzonasdk/model/request/RefundPaymentRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/alejo2075/enzonasdk/model/request/RefundsListRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/alejo2075/enzonasdk/model/response/CancelPaymentResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/alejo2075/enzonasdk/model/response/CheckoutResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/alejo2075/enzonasdk/model/response/CompletePaymentResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/alejo2075/enzonasdk/model/response/ConfirmPaymentResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/alejo2075/enzonasdk/model/response/CreateClaimsResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/alejo2075/enzonasdk/model/response/CreatePaymentOrderResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/alejo2075/enzonasdk/model/response/CreatePaymentResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/alejo2075/enzonasdk/model/response/CreateReceiveCodeResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/alejo2075/enzonasdk/model/response/ListRefundsResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/alejo2075/enzonasdk/model/response/PayProductResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/alejo2075/enzonasdk/model/response/PaymentDetailsResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/alejo2075/enzonasdk/model/response/PaymentsListResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/alejo2075/enzonasdk/model/response/RefundDetailsResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/alejo2075/enzonasdk/model/response/RefundPaymentResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/alejo2075/enzonasdk/model/response/RefundsListResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/alejo2075/enzonasdk/util/JsonUtil.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/io/github/alejo2075/enzonasdk/client/AuthClientTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/io/github/alejo2075/enzonasdk/client/ClaimApiTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/io/github/alejo2075/enzonasdk/client/PaymentApiTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/io/github/alejo2075/enzonasdk/util/JsonUtilTest.java" beforeDir="false" />
-    </list>
+    <list default="true" id="5d175f14-46a7-4d59-bc0c-79f1b41f4094" name="Changes" comment="renamed from doc to docs" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -126,7 +62,7 @@
     "Maven.enzona-sdk [validate].executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "doc",
+    "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/Users/alejandrosantana/enzona-sdk-java/src/main/java/com/desoft",
     "node.js.detected.package.eslint": "true",
@@ -172,6 +108,7 @@
       <workItem from="1713191917537" duration="5614000" />
       <workItem from="1713242670538" duration="184000" />
       <workItem from="1713280462602" duration="13087000" />
+      <workItem from="1713371728362" duration="329000" />
     </task>
     <task id="LOCAL-00001" summary="configured pom.xml">
       <option name="closed" value="true" />
@@ -325,7 +262,15 @@
       <option name="project" value="LOCAL" />
       <updated>1713370189055</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="renamed from doc to docs">
+      <option name="closed" value="true" />
+      <created>1713371801635</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1713371801635</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -359,7 +304,8 @@
     <MESSAGE value="fixed doc" />
     <MESSAGE value="fixed pom" />
     <MESSAGE value="refactored package name" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactored package name" />
+    <MESSAGE value="renamed from doc to docs" />
+    <option name="LAST_COMMIT_MESSAGE" value="renamed from doc to docs" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
