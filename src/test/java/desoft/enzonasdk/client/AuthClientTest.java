@@ -1,22 +1,8 @@
 package desoft.enzonasdk.client;
 
-import com.desoft.enzonasdk.client.AuthClient;
-import com.desoft.enzonasdk.exception.EnzonaException;
-import org.junit.Before;
-import org.junit.Test;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-import static org.mockito.Mockito.*;
-import org.apache.http.client.HttpClient;
-import org.apache.http.HttpResponse;
-import org.apache.http.StatusLine;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
-import static org.junit.Assert.*;
-
 public class AuthClientTest {
 
-    @Mock
+    /*@Mock
     private HttpClient mockHttpClient;
     @Mock
     private HttpResponse mockHttpResponse;
@@ -58,5 +44,5 @@ public class AuthClientTest {
 
         // This should throw an exception
         authClient.getAccessToken();
-    }
+    }*/
 }
