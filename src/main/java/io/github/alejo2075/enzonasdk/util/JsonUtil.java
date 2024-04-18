@@ -6,7 +6,10 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import io.github.alejo2075.enzonasdk.exception.JsonProcessingException;
 
 /**
- * Utility class for JSON serialization and deserialization with enhanced exception handling.
+ * Provides utility methods for converting between JSON strings and Java objects.
+ * This class configures the ObjectMapper to not fail on unknown properties and to format the JSON output.
+ *
+ * <p>Exception handling is centralized via the JsonProcessingException, providing a clear protocol for error management across JSON processing tasks.</p>
  */
 public class JsonUtil {
     private static final ObjectMapper objectMapper = new ObjectMapper();
@@ -17,13 +20,13 @@ public class JsonUtil {
     }
 
     /**
-     * Converts a JSON string to a Java object.
+     * Deserializes a JSON string into an object of the specified Java class.
      *
-     * @param json      The JSON string to convert.
-     * @param valueType The class of the Java type to convert to.
-     * @param <T>       The type of the Java object.
-     * @return An instance of {@code T} populated with the data from the JSON string.
-     * @throws JsonProcessingException If the conversion fails due to invalid JSON structure or schema mismatches.
+     * @param json      the JSON string to be deserialized
+     * @param valueType the class of type T to which json is to be deserialized
+     * @param <T>       the type parameter indicating the type of the Java object to be returned
+     * @return an instance of {@code T} populated with data converted from the JSON string
+     * @throws JsonProcessingException if JSON to Java object deserialization fails
      */
     public static <T> T fromJson(String json, Class<T> valueType) {
         try {
@@ -34,11 +37,11 @@ public class JsonUtil {
     }
 
     /**
-     * Converts a Java object to a JSON string.
+     * Serializes an object into its JSON string representation.
      *
-     * @param value The Java object to convert.
-     * @return A JSON string representation of the Java object.
-     * @throws JsonProcessingException If the conversion fails due to serialization issues.
+     * @param value the Java object to be serialized
+     * @return a JSON string representation of {@code value}
+     * @throws JsonProcessingException if object to JSON serialization fails
      */
     public static String toJson(Object value) {
         try {
