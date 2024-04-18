@@ -5,7 +5,7 @@
 
     <groupId>io.github.alejo2075</groupId>
     <artifactId>enzona-sdk</artifactId>
-    <version>0.9.1</version>
+    <version>0.9.5</version>
 
     <name>Java SDK for Enzona</name>
     <description>A Java SDK for interacting with the Enzona API.</description>
