@@ -1,0 +1,5 @@
+io.github.alejo2075.enzonasdk.client
+io.github.alejo2075.enzonasdk.exception
+io.github.alejo2075.enzonasdk.model.request
+io.github.alejo2075.enzonasdk.model.response
+io.github.alejo2075.enzonasdk.util
