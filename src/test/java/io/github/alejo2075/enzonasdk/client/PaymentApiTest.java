@@ -307,7 +307,7 @@ public class PaymentApiTest {
 
         assertNotNull(response);
         assertEquals("success", response.getStatus());
-        assertEquals("Payment successful", response.getMessage());
+        assertEquals("Payment successful", response.getMensaje());
     }
 
     // CreatePaymentOrder
@@ -337,7 +337,7 @@ public class PaymentApiTest {
         CreatePaymentOrderResponse response = paymentApi.createPaymentOrder(request);
 
         assertNotNull(response);
-        assertEquals("success", response.getStatus());
+        assertEquals("success", response.getStatusCode());
         assertEquals("uuid", response.getTransactionUuid());
     }
 
