@@ -25,7 +25,7 @@ To include this SDK in your Maven project, add the following dependency to your 
 <dependency>
     <groupId>io.github.alejo2075</groupId>
     <artifactId>enzona-sdk</artifactId>
-    <version>1.0.0</version>
+    <version>0.9.5</version>
 </dependency>
 ```
 
