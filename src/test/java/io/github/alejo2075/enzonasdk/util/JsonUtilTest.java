@@ -1,36 +1,54 @@
 package io.github.alejo2075.enzonasdk.util;
 
-public class JsonUtilTest {
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
 
-    /*@Test
-    public void testFromJsonValid() {
+import static org.junit.jupiter.api.Assertions.*;
+
+@ExtendWith(MockitoExtension.class)
+class JsonUtilTest {
+
+    @Test
+    @DisplayName("Deserialize valid JSON into a Person object")
+    void testFromJsonValid() {
         String json = "{\"name\":\"John\", \"age\":30}";
         Person person = JsonUtil.fromJson(json, Person.class);
-        assertNotNull("The result should not be null", person);
-        assertEquals("The name should be John", "John", person.getName());
-        assertEquals("The age should be 30", 30, person.getAge());
-    }
-
-    @Test(expected = RuntimeException.class)
-    public void testFromJsonInvalid() {
-        String json = "{name:\"John\", age:30}"; // Missing quotes around field names
-        JsonUtil.fromJson(json, Person.class);
+        assertAll("person",
+                () -> assertNotNull(person, "The result should not be null"),
+                () -> assertEquals("John", person.getName(), "The name should be John"),
+                () -> assertEquals(30, person.getAge(), "The age should be 30")
+        );
     }
 
     @Test
-    public void testToJsonValid() {
-        Person person = new Person("Jane", 25);
-        String json = JsonUtil.toJson(person);
-        assertNotNull("The result should not be null", json);
-        assertTrue("The JSON should contain the name Jane", json.contains("\"name\":\"Jane\""));
-        assertTrue("The JSON should contain the age 25", json.contains("\"age\":25"));
+    @DisplayName("Deserialize invalid JSON should throw RuntimeException")
+    void testFromJsonInvalid() {
+        String json = "{name:\"John\", age:30}"; // Missing quotes around field names
+        assertThrows(RuntimeException.class, () -> JsonUtil.fromJson(json, Person.class),
+                "Should throw RuntimeException due to invalid JSON format");
     }
 
-    @Test(expected = RuntimeException.class)
-    public void testToJsonInvalid() {
+    @Test
+    @DisplayName("Serialize valid Person object into JSON")
+    void testToJsonValid() {
+        Person person = new Person("Jane", 25);
+        String json = JsonUtil.toJson(person);
+        assertAll("json content",
+                () -> assertNotNull(json, "The result should not be null"),
+                () -> assertTrue(json.contains("\"name\":\"Jane\""), "The JSON should contain the name Jane"),
+                () -> assertTrue(json.contains("\"age\":25"), "The JSON should contain the age 25")
+        );
+    }
+
+    @Test
+    @DisplayName("Serialize Person object with null name should throw RuntimeException")
+    void testToJsonInvalid() {
         Person person = new Person(null, 25); // Assuming the serializer is set to fail on null fields
-        JsonUtil.toJson(person);
-    }*/
+        assertThrows(RuntimeException.class, () -> JsonUtil.toJson(person),
+                "Should throw RuntimeException because name is null");
+    }
 
     // Helper class for the tests
     static class Person {
@@ -62,4 +80,3 @@ public class JsonUtilTest {
         }
     }
 }
-
