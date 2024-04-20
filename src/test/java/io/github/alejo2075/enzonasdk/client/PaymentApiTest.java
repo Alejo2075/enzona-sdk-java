@@ -1,8 +1,31 @@
 package io.github.alejo2075.enzonasdk.client;
 
+import io.github.alejo2075.enzonasdk.exception.EnzonaException;
+import io.github.alejo2075.enzonasdk.model.request.*;
+import io.github.alejo2075.enzonasdk.model.response.*;
+import org.apache.http.HttpResponse;
+import org.apache.http.StatusLine;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.apache.http.client.methods.CloseableHttpResponse;
+
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+
+@ExtendWith(MockitoExtension.class)
 public class PaymentApiTest {
 
-    /*@Mock
+    @Mock
     private CloseableHttpClient mockHttpClient;
     @Mock
     private CloseableHttpResponse mockResponse;
@@ -11,54 +34,63 @@ public class PaymentApiTest {
 
     private PaymentApi paymentApi;
 
-    @Before
+    @BeforeEach
     public void setUp() {
-        MockitoAnnotations.initMocks(this);
         paymentApi = new PaymentApi("consumerKey", "consumerSecret");
         paymentApi.setHttpClient(mockHttpClient);
     }
 
-    @Test(expected = EnzonaException.class)
+    // ConfirmPayment
+    @Test
+    @DisplayName("ConfirmPayment fails with EnzonaException on server error")
     public void testConfirmPaymentFailure() throws Exception {
         when(mockHttpClient.execute(any(HttpPost.class))).thenReturn(mockResponse);
         when(mockResponse.getStatusLine()).thenReturn(mockStatusLine);
         when(mockStatusLine.getStatusCode()).thenReturn(500);
-        when(mockResponse.getEntity()).thenReturn(new StringEntity("{\"error\":\"Internal Server Error\"}"));
+        when(mockResponse.getEntity()).thenReturn(new StringEntity("{\"error\":\"Internal Server Error\"}", "UTF-8"));
 
-        ConfirmPaymentRequest request = new ConfirmPaymentRequest(); // Populate request object accordingly
-        paymentApi.confirmPayment("uuid", request);
+        ConfirmPaymentRequest request = new ConfirmPaymentRequest();
+        EnzonaException exception = assertThrows(EnzonaException.class, () -> paymentApi.confirmPayment("uuid", request));
+        assertTrue(exception.getMessage().contains("Internal Server Error"), "Exception should contain 'Internal Server Error'");
     }
 
     @Test
+    @DisplayName("ConfirmPayment succeeds with valid response")
     public void testConfirmPaymentSuccess() throws Exception {
+        String jsonResponse = "{\"status\":\"success\"}";
         when(mockHttpClient.execute(any(HttpPost.class))).thenReturn(mockResponse);
         when(mockResponse.getStatusLine()).thenReturn(mockStatusLine);
         when(mockStatusLine.getStatusCode()).thenReturn(200);
-        when(mockResponse.getEntity()).thenReturn(new StringEntity("{\"status\":\"success\"}"));
+        when(mockResponse.getEntity()).thenReturn(new StringEntity(jsonResponse));
 
-        ConfirmPaymentRequest request = new ConfirmPaymentRequest(); // Populate request object accordingly
+        ConfirmPaymentRequest request = new ConfirmPaymentRequest();
         ConfirmPaymentResponse response = paymentApi.confirmPayment("uuid", request);
 
         assertNotNull(response);
         assertEquals("success", response.getStatus());
     }
 
-    @Test(expected = EnzonaException.class)
+    // CompletePayment
+    @Test
+    @DisplayName("CompletePayment fails with EnzonaException on bad request")
     public void testCompletePaymentFailure() throws Exception {
         when(mockHttpClient.execute(any(HttpPost.class))).thenReturn(mockResponse);
         when(mockResponse.getStatusLine()).thenReturn(mockStatusLine);
         when(mockStatusLine.getStatusCode()).thenReturn(400);
         when(mockResponse.getEntity()).thenReturn(new StringEntity("{\"error\":\"Bad Request\"}"));
 
-        paymentApi.completePayment("uuid");
+        EnzonaException exception = assertThrows(EnzonaException.class, () -> paymentApi.completePayment("uuid"));
+        assertTrue(exception.getMessage().contains("Bad Request"), "Exception should contain 'Bad Request'");
     }
 
     @Test
+    @DisplayName("CompletePayment succeeds with valid response")
     public void testCompletePaymentSuccess() throws Exception {
+        String jsonResponse = "{\"status\":\"completed\"}";
         when(mockHttpClient.execute(any(HttpPost.class))).thenReturn(mockResponse);
         when(mockResponse.getStatusLine()).thenReturn(mockStatusLine);
         when(mockStatusLine.getStatusCode()).thenReturn(200);
-        when(mockResponse.getEntity()).thenReturn(new StringEntity("{\"status\":\"completed\"}"));
+        when(mockResponse.getEntity()).thenReturn(new StringEntity(jsonResponse));
 
         CompletePaymentResponse response = paymentApi.completePayment("uuid");
 
@@ -66,19 +98,23 @@ public class PaymentApiTest {
         assertEquals("completed", response.getStatusCode());
     }
 
-    @Test(expected = EnzonaException.class)
+    // GetRefundDetails
+    @Test
+    @DisplayName("GetRefundDetails fails with EnzonaException on not found")
     public void testGetRefundDetailsFailure() throws Exception {
         when(mockHttpClient.execute(any(HttpGet.class))).thenReturn(mockResponse);
         when(mockResponse.getStatusLine()).thenReturn(mockStatusLine);
         when(mockStatusLine.getStatusCode()).thenReturn(404);
         when(mockResponse.getEntity()).thenReturn(new StringEntity("{\"error\":\"Not Found\"}"));
 
-        paymentApi.getRefundDetails("uuid");
+        EnzonaException exception = assertThrows(EnzonaException.class, () -> paymentApi.getRefundDetails("uuid"));
+        assertTrue(exception.getMessage().contains("Not Found"), "Exception should contain 'Not Found'");
     }
 
     @Test
+    @DisplayName("GetRefundDetails succeeds with valid response")
     public void testGetRefundDetailsSuccess() throws Exception {
-        String jsonResponse = "{\"transaction_status_code\":\"completed\",\"parent_payment_uuid\":\"parentUuid\"}";
+        String jsonResponse = "{\"transaction_status_code\":\"completed\", \"parent_payment_uuid\":\"parentUuid\"}";
         when(mockHttpClient.execute(any(HttpGet.class))).thenReturn(mockResponse);
         when(mockResponse.getStatusLine()).thenReturn(mockStatusLine);
         when(mockStatusLine.getStatusCode()).thenReturn(200);
@@ -91,52 +127,60 @@ public class PaymentApiTest {
         assertEquals("parentUuid", response.getParentPaymentUuid());
     }
 
-    @Test(expected = EnzonaException.class)
+    // GetRefundsList
+    @Test
+    @DisplayName("GetRefundsList fails with EnzonaException on not found")
     public void testGetRefundsListFailure() throws Exception {
+        RefundsListRequest request = new RefundsListRequest(); // Assuming this is properly populated
         when(mockHttpClient.execute(any(HttpGet.class))).thenReturn(mockResponse);
         when(mockResponse.getStatusLine()).thenReturn(mockStatusLine);
         when(mockStatusLine.getStatusCode()).thenReturn(404);
         when(mockResponse.getEntity()).thenReturn(new StringEntity("{\"error\":\"Not Found\"}"));
 
-        RefundsListRequest request = new RefundsListRequest(); // Populate request object as needed
-        paymentApi.getRefundsList(request);
+        EnzonaException exception = assertThrows(EnzonaException.class, () -> paymentApi.getRefundsList(request));
+        assertTrue(exception.getMessage().contains("Not Found"), "Exception should contain 'Not Found'");
     }
 
     @Test
+    @DisplayName("GetRefundsList succeeds with valid response")
     public void testGetRefundsListSuccess() throws Exception {
         String jsonResponse = "{\"refunds\":[{\"transaction_code\":2000}]}";
+        RefundsListRequest request = new RefundsListRequest(); // Assuming this is properly populated
         when(mockHttpClient.execute(any(HttpGet.class))).thenReturn(mockResponse);
         when(mockResponse.getStatusLine()).thenReturn(mockStatusLine);
         when(mockStatusLine.getStatusCode()).thenReturn(200);
         when(mockResponse.getEntity()).thenReturn(new StringEntity(jsonResponse));
 
-        RefundsListRequest request = new RefundsListRequest(); // Populate request object as needed
         RefundsListResponse response = paymentApi.getRefundsList(request);
 
         assertNotNull(response);
         assertEquals(2000, response.getRefunds().get(0).getTransactionCode());
     }
 
-    @Test(expected = EnzonaException.class)
+    // CreatePayment
+    @Test
+    @DisplayName("CreatePayment fails with EnzonaException on bad request")
     public void testCreatePaymentFailure() throws Exception {
+        CreatePaymentRequest request = new CreatePaymentRequest(); // Assuming this is properly populated
         when(mockHttpClient.execute(any(HttpPost.class))).thenReturn(mockResponse);
         when(mockResponse.getStatusLine()).thenReturn(mockStatusLine);
         when(mockStatusLine.getStatusCode()).thenReturn(400);
         when(mockResponse.getEntity()).thenReturn(new StringEntity("{\"error\":\"Bad Request\"}"));
 
-        CreatePaymentRequest request = new CreatePaymentRequest(); // Populate request object accordingly
-        paymentApi.createPayment(request);
+        EnzonaException exception = assertThrows(EnzonaException.class, () -> paymentApi.createPayment(request));
+        assertTrue(exception.getMessage().contains("Bad Request"), "Exception should contain 'Bad Request'");
     }
 
     @Test
+    @DisplayName("CreatePayment succeeds with valid response")
     public void testCreatePaymentSuccess() throws Exception {
         String jsonResponse = "{\"status\":\"success\", \"transaction_uuid\":\"uuid\"}";
+        CreatePaymentRequest request = new CreatePaymentRequest(); // Assuming this is properly populated
         when(mockHttpClient.execute(any(HttpPost.class))).thenReturn(mockResponse);
         when(mockResponse.getStatusLine()).thenReturn(mockStatusLine);
         when(mockStatusLine.getStatusCode()).thenReturn(200);
         when(mockResponse.getEntity()).thenReturn(new StringEntity(jsonResponse));
 
-        CreatePaymentRequest request = new CreatePaymentRequest(); // Populate request object accordingly
         CreatePaymentResponse response = paymentApi.createPayment(request);
 
         assertNotNull(response);
@@ -144,69 +188,21 @@ public class PaymentApiTest {
         assertEquals("uuid", response.getTransactionUuid());
     }
 
-    @Test(expected = EnzonaException.class)
-    public void testGetPaymentsListFailure() throws Exception {
-        when(mockHttpClient.execute(any(HttpGet.class))).thenReturn(mockResponse);
-        when(mockResponse.getStatusLine()).thenReturn(mockStatusLine);
-        when(mockStatusLine.getStatusCode()).thenReturn(400);
-        when(mockResponse.getEntity()).thenReturn(new StringEntity("{\"error\":\"Bad Request\"}"));
-
-        PaymentsListRequest request = new PaymentsListRequest(); // Populate with test criteria
-        paymentApi.getPaymentsList(request);
-    }
-
+    // PerformCheckout
     @Test
-    public void testGetPaymentsListSuccess() throws Exception {
-        String jsonResponse = "{\"payments\":[{\"amount\":{\"total\":100.0},\"currency\":\"USD\"}]}";
-        when(mockHttpClient.execute(any(HttpGet.class))).thenReturn(mockResponse);
-        when(mockResponse.getStatusLine()).thenReturn(mockStatusLine);
-        when(mockStatusLine.getStatusCode()).thenReturn(200);
-        when(mockResponse.getEntity()).thenReturn(new StringEntity(jsonResponse));
-
-        PaymentsListRequest request = new PaymentsListRequest(); // Populate with test criteria
-        PaymentsListResponse response = paymentApi.getPaymentsList(request);
-
-        assertNotNull(response);
-        assertFalse(response.getPayments().isEmpty());
-        assertEquals(100.0, response.getPayments().get(0).getAmount().getTotal(), 0.01);
-    }
-
-    @Test(expected = EnzonaException.class)
-    public void testGetPaymentDetailsFailure() throws Exception {
-        when(mockHttpClient.execute(any(HttpGet.class))).thenReturn(mockResponse);
-        when(mockResponse.getStatusLine()).thenReturn(mockStatusLine);
-        when(mockStatusLine.getStatusCode()).thenReturn(404);
-        when(mockResponse.getEntity()).thenReturn(new StringEntity("{\"error\":\"Not Found\"}"));
-
-        paymentApi.getPaymentDetails("invalidUuid");
-    }
-
-    @Test
-    public void testGetPaymentDetailsSuccess() throws Exception {
-        String jsonResponse = "{\"amount\":{\"total\":200.0},\"status_code\":\"completed\"}";
-        when(mockHttpClient.execute(any(HttpGet.class))).thenReturn(mockResponse);
-        when(mockResponse.getStatusLine()).thenReturn(mockStatusLine);
-        when(mockStatusLine.getStatusCode()).thenReturn(200);
-        when(mockResponse.getEntity()).thenReturn(new StringEntity(jsonResponse));
-
-        PaymentDetailsResponse response = paymentApi.getPaymentDetails("validUuid");
-
-        assertNotNull(response);
-        assertEquals(200.0, response.getAmount().getTotal(), 0.01);
-        assertEquals("completed", response.getStatusCode());
-    }
-
-    @Test(expected = EnzonaException.class)
+    @DisplayName("PerformCheckout fails with EnzonaException on not found")
     public void testPerformCheckoutFailure() throws Exception {
         when(mockHttpClient.execute(any(HttpGet.class))).thenReturn(mockResponse);
         when(mockResponse.getStatusLine()).thenReturn(mockStatusLine);
         when(mockStatusLine.getStatusCode()).thenReturn(404);
-        when(mockResponse.getEntity()).thenReturn(new StringEntity("{\"error\":\"Not Found\"}"));
+        when(mockResponse.getEntity()).thenReturn(new StringEntity("{\"error\":\"Not Found\"}", "UTF-8"));
 
-        paymentApi.performCheckout("invalidUuid");
+        EnzonaException exception = assertThrows(EnzonaException.class, () -> paymentApi.performCheckout("invalidUuid"));
+        assertTrue(exception.getMessage().contains("Not Found"), "Exception should contain 'Not Found'");
     }
 
     @Test
+    @DisplayName("PerformCheckout succeeds with valid response")
     public void testPerformCheckoutSuccess() throws Exception {
         String jsonResponse = "{\"message\":\"Checkout initiated successfully\"}";
         when(mockHttpClient.execute(any(HttpGet.class))).thenReturn(mockResponse);
@@ -220,26 +216,30 @@ public class PaymentApiTest {
         assertEquals("Checkout initiated successfully", response.getMessage());
     }
 
-    @Test(expected = EnzonaException.class)
+    // CreateReceiveCode
+    @Test
+    @DisplayName("CreateReceiveCode fails with EnzonaException on bad request")
     public void testCreateReceiveCodeFailure() throws Exception {
+        CreateReceiveCodeRequest request = new CreateReceiveCodeRequest(); // Assuming this is properly populated
         when(mockHttpClient.execute(any(HttpPost.class))).thenReturn(mockResponse);
         when(mockResponse.getStatusLine()).thenReturn(mockStatusLine);
         when(mockStatusLine.getStatusCode()).thenReturn(400);
-        when(mockResponse.getEntity()).thenReturn(new StringEntity("{\"error\":\"Bad Request\"}"));
+        when(mockResponse.getEntity()).thenReturn(new StringEntity("{\"error\":\"Bad Request\"}", "UTF-8"));
 
-        CreateReceiveCodeRequest request = new CreateReceiveCodeRequest(); // Populate request object as needed
-        paymentApi.createReceiveCode(request);
+        EnzonaException exception = assertThrows(EnzonaException.class, () -> paymentApi.createReceiveCode(request));
+        assertTrue(exception.getMessage().contains("Bad Request"), "Exception should contain 'Bad Request'");
     }
 
     @Test
+    @DisplayName("CreateReceiveCode succeeds with valid response")
     public void testCreateReceiveCodeSuccess() throws Exception {
         String jsonResponse = "{\"message\":\"Receive code created successfully\", \"status\":\"success\"}";
+        CreateReceiveCodeRequest request = new CreateReceiveCodeRequest(); // Assuming this is properly populated
         when(mockHttpClient.execute(any(HttpPost.class))).thenReturn(mockResponse);
         when(mockResponse.getStatusLine()).thenReturn(mockStatusLine);
         when(mockStatusLine.getStatusCode()).thenReturn(200);
         when(mockResponse.getEntity()).thenReturn(new StringEntity(jsonResponse));
 
-        CreateReceiveCodeRequest request = new CreateReceiveCodeRequest(); // Populate request object as needed
         CreateReceiveCodeResponse response = paymentApi.createReceiveCode(request);
 
         assertNotNull(response);
@@ -247,28 +247,30 @@ public class PaymentApiTest {
         assertEquals("Receive code created successfully", response.getMensaje());
     }
 
-    @Test(expected = EnzonaException.class)
+    // ListRefunds
+    @Test
+    @DisplayName("ListRefunds fails with EnzonaException on not found")
     public void testListRefundsFailure() throws Exception {
+        ListRefundsRequest request = new ListRefundsRequest(); // Properly populated
         when(mockHttpClient.execute(any(HttpGet.class))).thenReturn(mockResponse);
         when(mockResponse.getStatusLine()).thenReturn(mockStatusLine);
-        when(mockStatusLine.getStatusCode()).thenReturn(400);
-        when(mockResponse.getEntity()).thenReturn(new StringEntity("{\"error\":\"Bad Request\"}"));
+        when(mockStatusLine.getStatusCode()).thenReturn(404);
+        when(mockResponse.getEntity()).thenReturn(new StringEntity("{\"error\":\"Not Found\"}", "UTF-8"));
 
-        ListRefundsRequest request = new ListRefundsRequest();
-        request.setTransactionUuid("validUuid");
-        paymentApi.listRefunds(request);
+        EnzonaException exception = assertThrows(EnzonaException.class, () -> paymentApi.listRefunds(request));
+        assertTrue(exception.getMessage().contains("Not Found"), "Exception should contain 'Not Found'");
     }
 
     @Test
+    @DisplayName("ListRefunds succeeds with valid response")
     public void testListRefundsSuccess() throws Exception {
         String jsonResponse = "{\"refunds\":[{\"amount\":{\"total\":50.0},\"status\":\"processed\"}]}";
+        ListRefundsRequest request = new ListRefundsRequest(); // Properly populated
         when(mockHttpClient.execute(any(HttpGet.class))).thenReturn(mockResponse);
         when(mockResponse.getStatusLine()).thenReturn(mockStatusLine);
         when(mockStatusLine.getStatusCode()).thenReturn(200);
         when(mockResponse.getEntity()).thenReturn(new StringEntity(jsonResponse));
 
-        ListRefundsRequest request = new ListRefundsRequest();
-        request.setTransactionUuid("validUuid");
         ListRefundsResponse response = paymentApi.listRefunds(request);
 
         assertNotNull(response);
@@ -277,71 +279,83 @@ public class PaymentApiTest {
         assertEquals("processed", response.getRefunds().get(0).getStatusCode());
     }
 
-    @Test(expected = EnzonaException.class)
+    // PayProduct
+    @Test
+    @DisplayName("PayProduct fails with EnzonaException on bad request")
     public void testPayProductFailure() throws Exception {
+        PayProductRequest request = new PayProductRequest(); // Properly populated
         when(mockHttpClient.execute(any(HttpPost.class))).thenReturn(mockResponse);
         when(mockResponse.getStatusLine()).thenReturn(mockStatusLine);
         when(mockStatusLine.getStatusCode()).thenReturn(400);
-        when(mockResponse.getEntity()).thenReturn(new StringEntity("{\"error\":\"Bad Request\"}"));
+        when(mockResponse.getEntity()).thenReturn(new StringEntity("{\"error\":\"Bad Request\"}", "UTF-8"));
 
-        PayProductRequest request = new PayProductRequest(); // Populate request object accordingly
-        paymentApi.payProduct(request);
+        EnzonaException exception = assertThrows(EnzonaException.class, () -> paymentApi.payProduct(request));
+        assertTrue(exception.getMessage().contains("Bad Request"), "Exception should contain 'Bad Request'");
     }
 
     @Test
+    @DisplayName("PayProduct succeeds with valid response")
     public void testPayProductSuccess() throws Exception {
         String jsonResponse = "{\"message\":\"Payment successful\", \"status\":\"success\"}";
+        PayProductRequest request = new PayProductRequest(); // Properly populated
         when(mockHttpClient.execute(any(HttpPost.class))).thenReturn(mockResponse);
         when(mockResponse.getStatusLine()).thenReturn(mockStatusLine);
         when(mockStatusLine.getStatusCode()).thenReturn(200);
         when(mockResponse.getEntity()).thenReturn(new StringEntity(jsonResponse));
 
-        PayProductRequest request = new PayProductRequest(); // Populate request object accordingly
         PayProductResponse response = paymentApi.payProduct(request);
 
         assertNotNull(response);
         assertEquals("success", response.getStatus());
-        assertEquals("Payment successful", response.getMensaje());
+        assertEquals("Payment successful", response.getMessage());
     }
 
-    @Test(expected = EnzonaException.class)
+    // CreatePaymentOrder
+    @Test
+    @DisplayName("CreatePaymentOrder fails with EnzonaException on bad request")
     public void testCreatePaymentOrderFailure() throws Exception {
+        CreatePaymentOrderRequest request = new CreatePaymentOrderRequest(); // Properly populated
         when(mockHttpClient.execute(any(HttpPost.class))).thenReturn(mockResponse);
         when(mockResponse.getStatusLine()).thenReturn(mockStatusLine);
         when(mockStatusLine.getStatusCode()).thenReturn(400);
-        when(mockResponse.getEntity()).thenReturn(new StringEntity("{\"error\":\"Bad Request\"}"));
+        when(mockResponse.getEntity()).thenReturn(new StringEntity("{\"error\":\"Bad Request\"}", "UTF-8"));
 
-        CreatePaymentOrderRequest request = new CreatePaymentOrderRequest(); // Populate request object as needed
-        paymentApi.createPaymentOrder(request);
+        EnzonaException exception = assertThrows(EnzonaException.class, () -> paymentApi.createPaymentOrder(request));
+        assertTrue(exception.getMessage().contains("Bad Request"), "Exception should contain 'Bad Request'");
     }
 
     @Test
+    @DisplayName("CreatePaymentOrder succeeds with valid response")
     public void testCreatePaymentOrderSuccess() throws Exception {
         String jsonResponse = "{\"status\":\"success\", \"transaction_uuid\":\"uuid\"}";
+        CreatePaymentOrderRequest request = new CreatePaymentOrderRequest(); // Properly populated
         when(mockHttpClient.execute(any(HttpPost.class))).thenReturn(mockResponse);
         when(mockResponse.getStatusLine()).thenReturn(mockStatusLine);
         when(mockStatusLine.getStatusCode()).thenReturn(200);
         when(mockResponse.getEntity()).thenReturn(new StringEntity(jsonResponse));
 
-        CreatePaymentOrderRequest request = new CreatePaymentOrderRequest(); // Populate request object as needed
         CreatePaymentOrderResponse response = paymentApi.createPaymentOrder(request);
 
         assertNotNull(response);
-        assertEquals("success", response.getStatusCode());
+        assertEquals("success", response.getStatus());
         assertEquals("uuid", response.getTransactionUuid());
     }
 
-    @Test(expected = EnzonaException.class)
+    // CancelPayment
+    @Test
+    @DisplayName("CancelPayment fails with EnzonaException on bad request")
     public void testCancelPaymentFailure() throws Exception {
         when(mockHttpClient.execute(any(HttpPost.class))).thenReturn(mockResponse);
         when(mockResponse.getStatusLine()).thenReturn(mockStatusLine);
         when(mockStatusLine.getStatusCode()).thenReturn(400);
-        when(mockResponse.getEntity()).thenReturn(new StringEntity("{\"error\":\"Bad Request\"}"));
+        when(mockResponse.getEntity()).thenReturn(new StringEntity("{\"error\":\"Bad Request\"}", "UTF-8"));
 
-        paymentApi.cancelPayment("invalidUuid");
+        EnzonaException exception = assertThrows(EnzonaException.class, () -> paymentApi.cancelPayment("invalidUuid"));
+        assertTrue(exception.getMessage().contains("Bad Request"), "Exception should contain 'Bad Request'");
     }
 
     @Test
+    @DisplayName("CancelPayment succeeds with valid response")
     public void testCancelPaymentSuccess() throws Exception {
         String jsonResponse = "{\"status\":\"success\"}";
         when(mockHttpClient.execute(any(HttpPost.class))).thenReturn(mockResponse);
@@ -355,32 +369,36 @@ public class PaymentApiTest {
         assertEquals("success", response.getStatusCode());
     }
 
-    @Test(expected = EnzonaException.class)
+    // RefundPayment
+    @Test
+    @DisplayName("RefundPayment fails with EnzonaException on bad request")
     public void testRefundPaymentFailure() throws Exception {
+        RefundPaymentRequest request = new RefundPaymentRequest(); // Properly populated
         when(mockHttpClient.execute(any(HttpPost.class))).thenReturn(mockResponse);
         when(mockResponse.getStatusLine()).thenReturn(mockStatusLine);
         when(mockStatusLine.getStatusCode()).thenReturn(400);
-        when(mockResponse.getEntity()).thenReturn(new StringEntity("{\"error\":\"Bad Request\"}"));
+        when(mockResponse.getEntity()).thenReturn(new StringEntity("{\"error\":\"Bad Request\"}", "UTF-8"));
 
-        RefundPaymentRequest request = new RefundPaymentRequest(); // Populate request object as needed
-        paymentApi.refundPayment("invalidUuid", request);
+        EnzonaException exception = assertThrows(EnzonaException.class, () -> paymentApi.refundPayment("invalidUuid", request));
+        assertTrue(exception.getMessage().contains("Bad Request"), "Exception should contain 'Bad Request'");
     }
 
     @Test
+    @DisplayName("RefundPayment succeeds with valid response")
     public void testRefundPaymentSuccess() throws Exception {
         String jsonResponse = "{\"status\":\"success\", \"description\":\"Refund processed\"}";
+        RefundPaymentRequest request = new RefundPaymentRequest(); // Properly populated
         when(mockHttpClient.execute(any(HttpPost.class))).thenReturn(mockResponse);
         when(mockResponse.getStatusLine()).thenReturn(mockStatusLine);
         when(mockStatusLine.getStatusCode()).thenReturn(200);
         when(mockResponse.getEntity()).thenReturn(new StringEntity(jsonResponse));
 
-        RefundPaymentRequest request = new RefundPaymentRequest(); // Populate request object as needed
         RefundPaymentResponse response = paymentApi.refundPayment("validUuid", request);
 
         assertNotNull(response);
         assertEquals("success", response.getStatusCode());
         assertEquals("Refund processed", response.getDescription());
-    }*/
+    }
 
 
 }
