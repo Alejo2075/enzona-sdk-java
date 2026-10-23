@@ -94,7 +94,7 @@ Every operation is defined once and exposed twice: a blocking method (`create`) 
 - Redirects are never followed (`Redirect.NEVER`), so the Bearer token cannot be forwarded to another host.
 - Headers: `User-Agent: enzona-sdk-java/<version>`, `Accept: application/json`, `Content-Type: application/json` for bodies.
 - Path segments and query values are percent-encoded. A `transaction_uuid` containing `/` cannot change the route.
-- Connect and request timeouts are configurable. `EnzonaClient` is `AutoCloseable`.
+- Connect and request timeouts are configurable. `EnzonaClient` is thread-safe and meant to be shared; it is not `AutoCloseable` because the JDK 17 `HttpClient` has nothing to close.
 - The `href` values inside `links` are never called with the token. `confirm` is for the buyer's browser; `complete` and `cancel` are done through the SDK.
 
 ### Payment flow and the lack of webhooks

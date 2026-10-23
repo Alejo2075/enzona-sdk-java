@@ -226,7 +226,7 @@ Payment fresh = client.payments().get(payment.transactionUuid());
 Payment done  = client.payments().complete(payment.transactionUuid());
 ```
 
-Convenciones: `record` inmutables para respuestas; clases finales con builder para requests (validan en `build()`); nombres Java en camelCase y JSON snake_case con `@JsonProperty`; cada operación tiene su gemela `...Async` que devuelve `CompletableFuture` (como en qvapay-java); `EnzonaClient` es `AutoCloseable` y seguro entre hilos.
+Convenciones: `record` inmutables para respuestas; clases finales con builder para requests (validan en `build()`); nombres Java en camelCase y JSON snake_case con `@JsonProperty`; cada operación tiene su gemela `...Async` que devuelve `CompletableFuture` (como en qvapay-java); `EnzonaClient` es seguro entre hilos y se reutiliza (no es `AutoCloseable`: `HttpClient` de JDK 17 no tiene `close()`).
 
 ### Comportamiento HTTP
 
