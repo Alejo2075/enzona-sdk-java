@@ -17,7 +17,7 @@
 | M7 – Ejemplos consumidores | Completado |
 | M8 – Documentación pública (falta docs/release.md, va en M10) | Completado |
 | M9 – CI (sin workflow de Pages, opcional) | Completado |
-| M10 – Preparación Maven Central | Pendiente |
+| M10 – Preparación Maven Central | Completado |
 | M11 – Release 2.0.0 (gate humano) | Pendiente: necesita aprobación explícita |
 
 ## 0. Resumen
