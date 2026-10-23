@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"io.github.alejo2075.enzonasdk.client"},{"l":"io.github.alejo2075.enzonasdk.exception"},{"l":"io.github.alejo2075.enzonasdk.model.request"},{"l":"io.github.alejo2075.enzonasdk.model.response"},{"l":"io.github.alejo2075.enzonasdk.util"}];updateSearchResults();
