@@ -25,11 +25,11 @@ Last review of every row: **2026-10-23**.
 
 | Java operation | Method and path | Request | Response | Status |
 |---|---|---|---|---|
-| `payments().create(r)` | `POST /payments` | see *Create payment* | `Payment` | verified |
-| `payments().get(uuid)` | `GET /payments/{transaction_uuid}` | — | `Payment` | verified |
-| `payments().list(q)` | `GET /payments` | `merchant_uuid, limit, offset, merchant_op_filter, enzona_op_filter, status_filter, start_date_filter, end_date_filter, order_filter` | `{"payments": [...], "pagination": {...}}` | verified |
-| `payments().complete(uuid)` | `POST /payments/{transaction_uuid}/complete` | empty body | `Payment` | verified |
-| `payments().cancel(uuid)` | `POST /payments/{transaction_uuid}/cancel` | empty body | `Payment` | verified |
+| `payments().create(r)` | `POST /payments` | see *Create payment* | `Payment` | tested |
+| `payments().get(uuid)` | `GET /payments/{transaction_uuid}` | — | `Payment` | tested |
+| `payments().list(q)` | `GET /payments` | `merchant_uuid, limit, offset, merchant_op_filter, enzona_op_filter, status_filter, start_date_filter, end_date_filter, order_filter` | `{"payments": [...], "pagination": {...}}` | tested |
+| `payments().complete(uuid)` | `POST /payments/{transaction_uuid}/complete` | empty body | `Payment` | tested |
+| `payments().cancel(uuid)` | `POST /payments/{transaction_uuid}/cancel` | empty body | `Payment` | tested |
 | `refunds().create(uuid, r)` | `POST /payments/{transaction_uuid}/refund` | `{}` (full) or `{"amount": {"total": "5.00"}, "description": "..."}` (partial) | `Refund` | verified |
 | `refunds().get(uuid)` | `GET /payments/refund/{transaction_uuid}` | — | `Refund` | verified |
 | `refunds().list(q)` | `GET /payments/refunds` | `merchant_uuid, transaction_uuid, commerce_refund_id, limit, offset, status_filter, start_date_filter, end_date_filter, order_filter` | `{"refunds": [...], "pagination": {...}}` | verified |
