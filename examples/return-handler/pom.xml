@@ -14,7 +14,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.release>17</maven.compiler.release>
     <!-- Install the SDK first: ./mvnw install (from the repository root). -->
-    <enzona.version>2.0.0-SNAPSHOT</enzona.version>
+    <enzona.version>2.0.0</enzona.version>
   </properties>
 
   <dependencies>

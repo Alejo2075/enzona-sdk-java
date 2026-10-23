@@ -6,8 +6,10 @@ Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [2.0.0] - 2026-10-23
+
 Version 2.0.0 is a ground-up rewrite. The 1.x line never worked against the live API (wrong base
-path, wrong JSON naming, silently empty responses); see `docs/migration-1.x.md` once published.
+path, wrong JSON naming, silently empty responses); see `docs/migration-1.x.md`.
 
 ### Added
 - `EnzonaClient` with production and sandbox environments, OAuth2 client-credentials handling
