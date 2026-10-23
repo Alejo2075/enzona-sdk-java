@@ -1,0 +1,39 @@
+// Kotlin DSL consumer of the ENZONA Java SDK.
+plugins {
+    java
+    application
+}
+
+repositories {
+    // Until 2.0.0 is on Maven Central the SDK comes from your local repository:
+    // run `./mvnw install -DskipTests` in the repository root first.
+    // After the release, delete mavenLocal(): mavenCentral() is all a consumer needs.
+    mavenLocal()
+    mavenCentral()
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+tasks.withType<JavaCompile>().configureEach {
+    options.release = 17
+}
+
+dependencies {
+    implementation("io.github.alejo2075:enzona-sdk:${property("enzonaVersion")}")
+
+    testImplementation(platform("org.junit:junit-bom:6.1.3"))
+    testImplementation("org.junit.jupiter:junit-jupiter")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+}
+
+application {
+    mainClass = "example.PaymentDemo"
+}
+
+tasks.test {
+    useJUnitPlatform()
+}
