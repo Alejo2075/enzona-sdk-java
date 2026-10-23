@@ -6,6 +6,8 @@ import io.github.alejo2075.enzona.internal.RequestExecutor;
 import io.github.alejo2075.enzona.internal.UrlEncoding;
 import io.github.alejo2075.enzona.internal.Validation;
 import io.github.alejo2075.enzona.model.Refund;
+import io.github.alejo2075.enzona.model.RefundPage;
+import io.github.alejo2075.enzona.model.RefundQuery;
 import io.github.alejo2075.enzona.model.RefundRequest;
 import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
@@ -97,5 +99,40 @@ public final class RefundsApi {
         Validation.id(refundUuid, "refundUuid");
         // The path uses the singular "refund" here, unlike the list ("refunds").
         return Operation.get(PAYMENTS + "/refund/" + UrlEncoding.encode(refundUuid), null);
+    }
+
+    /**
+     * Lists refunds of the merchant. Read-only, so the client's retry policy (if enabled) may
+     * repeat it.
+     *
+     * @param query the filters and paging, see {@link RefundQuery}
+     * @return one page of refunds
+     */
+    public RefundPage list(RefundQuery query) {
+        return executor.execute(listOp(query), b -> JsonCodec.read(b, RefundPage.class));
+    }
+
+    /**
+     * Lists refunds without filters.
+     *
+     * @return one page of refunds, as ENZONA's defaults define it
+     */
+    public RefundPage list() {
+        return list(RefundQuery.builder().build());
+    }
+
+    /**
+     * Asynchronous form of {@link #list(RefundQuery)}.
+     *
+     * @param query the filters and paging
+     * @return a future with one page of refunds
+     */
+    public CompletableFuture<RefundPage> listAsync(RefundQuery query) {
+        return executor.executeAsync(listOp(query), b -> JsonCodec.read(b, RefundPage.class));
+    }
+
+    private static Operation listOp(RefundQuery query) {
+        Objects.requireNonNull(query, "query");
+        return Operation.get(PAYMENTS + "/refunds", query.toQueryParameters());
     }
 }
