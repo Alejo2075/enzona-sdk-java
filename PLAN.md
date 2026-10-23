@@ -11,7 +11,7 @@
 | M1 – Limpieza y scaffold | Completado |
 | M2 – Investigación y diseño | Completado |
 | M3 – Núcleo (errores, auth OAuth2, HTTP, JSON, cliente) | Completado |
-| M4 – Modelos y PaymentAPI | Pendiente |
+| M4 – Modelos y PaymentAPI | Completado |
 | M5 – Devoluciones | Pendiente |
 | M6 – Async, flujo de retorno y hardening | Pendiente |
 | M7 – Ejemplos consumidores | Pendiente |
