@@ -8,8 +8,8 @@
 | Hito | Estado |
 |---|---|
 | M0 – Entorno y decisiones | Completado (JDK 17/21 en `~/.jdks`, coordenadas y licencia decididas) |
-| M1 – Limpieza y scaffold | Pendiente |
-| M2 – Investigación y diseño | Pendiente |
+| M1 – Limpieza y scaffold | Completado |
+| M2 – Investigación y diseño | Completado |
 | M3 – Núcleo (errores, auth OAuth2, HTTP, JSON, cliente) | Pendiente |
 | M4 – Modelos y PaymentAPI | Pendiente |
 | M5 – Devoluciones | Pendiente |
