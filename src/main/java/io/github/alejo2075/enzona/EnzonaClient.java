@@ -40,12 +40,14 @@ public final class EnzonaClient {
     private final ClientSettings settings;
     private final RequestExecutor executor;
     private final PaymentsApi payments;
+    private final RefundsApi refunds;
 
     private EnzonaClient(Environment environment, ClientSettings settings) {
         this.environment = environment;
         this.settings = settings;
         this.executor = new RequestExecutor(settings);
         this.payments = new PaymentsApi(executor);
+        this.refunds = new RefundsApi(executor);
     }
 
     /**
@@ -64,6 +66,15 @@ public final class EnzonaClient {
      */
     public PaymentsApi payments() {
         return payments;
+    }
+
+    /**
+     * Returns the refund operations.
+     *
+     * @return the refunds API
+     */
+    public RefundsApi refunds() {
+        return refunds;
     }
 
     /**
