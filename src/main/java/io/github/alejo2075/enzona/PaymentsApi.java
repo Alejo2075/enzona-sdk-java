@@ -9,6 +9,7 @@ import io.github.alejo2075.enzona.model.CreatePaymentRequest;
 import io.github.alejo2075.enzona.model.Payment;
 import io.github.alejo2075.enzona.model.PaymentPage;
 import io.github.alejo2075.enzona.model.PaymentQuery;
+import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
 
@@ -133,5 +134,41 @@ public final class PaymentsApi {
     private static Operation listOp(PaymentQuery query) {
         Objects.requireNonNull(query, "query");
         return Operation.get(PAYMENTS, query.toQueryParameters());
+    }
+
+    /**
+     * Completes a payment the buyer has confirmed, which is what actually charges the buyer.
+     *
+     * <p>Call it only after you fetched the payment with {@link #get(String)} and checked its
+     * status, amount, currency and {@code merchantOpId} against your own order. A payment that is
+     * never completed is not charged.
+     *
+     * <p>This call is <strong>never retried</strong>. If it fails with a transport error the
+     * outcome is unknown: fetch the payment and look at its status before trying again.
+     *
+     * @param transactionUuid the identifier returned when the payment was created
+     * @return the completed payment
+     * @throws io.github.alejo2075.enzona.exception.EnzonaApiException if ENZONA rejects it, for
+     *     example because the buyer did not confirm yet
+     */
+    public Payment complete(String transactionUuid) {
+        return executor.execute(completeOp(transactionUuid), b -> JsonCodec.read(b, Payment.class));
+    }
+
+    /**
+     * Asynchronous form of {@link #complete(String)}.
+     *
+     * @param transactionUuid the identifier returned when the payment was created
+     * @return a future with the completed payment
+     */
+    public CompletableFuture<Payment> completeAsync(String transactionUuid) {
+        return executor.executeAsync(
+                completeOp(transactionUuid), b -> JsonCodec.read(b, Payment.class));
+    }
+
+    private static Operation completeOp(String transactionUuid) {
+        // An empty JSON object keeps gateways that insist on a JSON body satisfied (TODO: VERIFY
+        // WITH ENZONA whether a body is needed at all).
+        return Operation.post(paymentPath(transactionUuid, "/complete"), Map.of());
     }
 }
