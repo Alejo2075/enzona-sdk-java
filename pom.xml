@@ -192,11 +192,15 @@
                 <rule>
                   <element>BUNDLE</element>
                   <limits>
-                    <!-- Raised to 90% lines / 80% branches once the SDK surface exists (PLAN.md M6). -->
                     <limit>
                       <counter>LINE</counter>
                       <value>COVEREDRATIO</value>
-                      <minimum>0.50</minimum>
+                      <minimum>0.90</minimum>
+                    </limit>
+                    <limit>
+                      <counter>BRANCH</counter>
+                      <value>COVEREDRATIO</value>
+                      <minimum>0.80</minimum>
                     </limit>
                   </limits>
                 </rule>
