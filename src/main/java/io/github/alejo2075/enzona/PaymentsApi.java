@@ -171,4 +171,34 @@ public final class PaymentsApi {
         // WITH ENZONA whether a body is needed at all).
         return Operation.post(paymentPath(transactionUuid, "/complete"), Map.of());
     }
+
+    /**
+     * Cancels a payment that has not been completed.
+     *
+     * <p>This call is <strong>never retried</strong>. If it fails with a transport error the
+     * outcome is unknown: fetch the payment and look at its status before trying again.
+     *
+     * @param transactionUuid the identifier returned when the payment was created
+     * @return the cancelled payment
+     * @throws io.github.alejo2075.enzona.exception.EnzonaApiException if ENZONA rejects it, for
+     *     example because the payment was already completed
+     */
+    public Payment cancel(String transactionUuid) {
+        return executor.execute(cancelOp(transactionUuid), b -> JsonCodec.read(b, Payment.class));
+    }
+
+    /**
+     * Asynchronous form of {@link #cancel(String)}.
+     *
+     * @param transactionUuid the identifier returned when the payment was created
+     * @return a future with the cancelled payment
+     */
+    public CompletableFuture<Payment> cancelAsync(String transactionUuid) {
+        return executor.executeAsync(
+                cancelOp(transactionUuid), b -> JsonCodec.read(b, Payment.class));
+    }
+
+    private static Operation cancelOp(String transactionUuid) {
+        return Operation.post(paymentPath(transactionUuid, "/cancel"), Map.of());
+    }
 }
