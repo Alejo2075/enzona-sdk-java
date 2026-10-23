@@ -12,7 +12,7 @@ stateDiagram-v2
     Accepted --> Refunded: you refund (1115)
 ```
 
-The numbers are the `status_code` values; `PaymentStatus` maps them and keeps unknown codes as `UNKNOWN`.
+The numbers are the `status_code` values; `PaymentStatus` maps them and keeps unknown codes as `UNKNOWN`. The transitions are the ones the status names suggest and the community SDKs use; ENZONA does not publish the state machine, so confirm them in the sandbox.
 
 ## 1. Create the payment
 

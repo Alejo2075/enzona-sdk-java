@@ -7,7 +7,7 @@ What the SDK does for you, and what stays your responsibility. To report a vulne
 | Secret | Where it goes | Where it never goes |
 |---|---|---|
 | Consumer key and secret | environment variables or a secret manager, on your server | source code, a Git repository, a browser, a mobile app, logs |
-| Access token | held in memory by the SDK for about an hour | disk, logs, URLs |
+| Access token | held in memory by the SDK until shortly before it expires | disk, logs, URLs |
 
 - The consumer secret is sent **only** to the token endpoint, as HTTP Basic authentication. API calls carry the Bearer token.
 - `ClientCredentials.toString()`, `EnzonaClient.toString()`, the token provider, requests and every exception hide the secret and the token. Tests check messages, causes and stack traces of every failure path, and that the SDK prints nothing to the console.
