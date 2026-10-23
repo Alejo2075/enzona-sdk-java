@@ -71,4 +71,31 @@ public final class RefundsApi {
         return Operation.post(
                 PAYMENTS + "/" + UrlEncoding.encode(transactionUuid) + "/refund", request);
     }
+
+    /**
+     * Fetches a refund. Read-only, so the client's retry policy (if enabled) may repeat it.
+     *
+     * @param refundUuid the {@code transaction_uuid} of the refund (not of the payment)
+     * @return the refund
+     * @throws io.github.alejo2075.enzona.exception.NotFoundException if the refund does not exist
+     */
+    public Refund get(String refundUuid) {
+        return executor.execute(getOp(refundUuid), b -> JsonCodec.read(b, Refund.class));
+    }
+
+    /**
+     * Asynchronous form of {@link #get(String)}.
+     *
+     * @param refundUuid the {@code transaction_uuid} of the refund
+     * @return a future with the refund
+     */
+    public CompletableFuture<Refund> getAsync(String refundUuid) {
+        return executor.executeAsync(getOp(refundUuid), b -> JsonCodec.read(b, Refund.class));
+    }
+
+    private static Operation getOp(String refundUuid) {
+        Validation.id(refundUuid, "refundUuid");
+        // The path uses the singular "refund" here, unlike the list ("refunds").
+        return Operation.get(PAYMENTS + "/refund/" + UrlEncoding.encode(refundUuid), null);
+    }
 }
