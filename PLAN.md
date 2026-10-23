@@ -30,7 +30,7 @@
 | M3 | Errores, OAuth2 con caché, transporte, códec JSON, ejecutor, cliente | Tests de token, cabeceras, errores y redacción de secretos |
 | M4 | Modelos de pago y 5 operaciones de pago | Fixture y tests por operación |
 | M5 | 4 operaciones de devoluciones | Fixture y tests por operación |
-| M6 | Async, `ReturnUrlParser`, tests transversales, umbral de cobertura | Checklist §7 de `CLAUDE.md` completo |
+| M6 | Tests transversales, umbral de cobertura (sin `ReturnUrlParser`, ver nota) | Checklist §7 de `CLAUDE.md` completo |
 | M7 | `examples/` Maven, Gradle (Groovy/Kotlin) y retorno | Compilan y pasan contra el JAR de `~/.m2` |
 | M8 | README EN/ES, docs, migración, archivos comunitarios | `scripts/readme_snippets.py check` en verde |
 | M9 | GitHub Actions, Dependabot, gitleaks, Pages | Workflows válidos |
@@ -65,7 +65,7 @@ Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
 | `json` | códec Jackson 3 y deserializadores tolerantes |
 | `core` | `EnzonaClient`, `Environment`, ejecutor |
 | `payments`, `refunds` | APIs y modelos de cada grupo |
-| `flow` | `ReturnUrlParser` y utilidades del flujo |
+| `flow` | (sin uso: descartado el parser de la URL de retorno) |
 | `examples`, `docs`, `readme`, `ci`, `release` | lo que indica su nombre |
 
 ### 1.2 Reglas
@@ -161,7 +161,7 @@ Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
 
 | # | Commit | Contenido |
 |---|---|---|
-| 33 | `feat(flow): add return url parser` | `ReturnUrlParser.transactionUuid(URI)`; Javadoc: no prueba el pago |
+| 33 | ~~`feat(flow): add return url parser`~~ | **Descartado**: ENZONA no documenta que añada el uuid a `return_url` (el SDK Dart y el plugin de WordPress lo guardan al crear). Se documenta el patrón en `docs/payment-flow.md` |
 | 34 | `test(core): verify sync and async parity over real HTTP` | |
 | 35 | `test(core): ensure secrets never appear in toString, exceptions or output` | |
 | 36 | `test(core): verify isolation and token sharing across threads and clients` | |
@@ -246,7 +246,7 @@ Requisitos previos (**HUMAN SETUP REQUIRED**):
 | Token | Caché por cliente; `AccessTokenProvider` reemplazable; repetición única tras 401 |
 | Reintentos | Solo `GET` y opt-in; nunca `POST` |
 | Async | Método `...Async` por operación (`CompletableFuture`), igual que qvapay-java |
-| Retorno | Sin webhooks: `ReturnUrlParser` y documentación del patrón get → verificar → complete |
+| Retorno | Sin webhooks ni parser de URL: el integrador guarda el uuid al crear; documentación del patrón get → verificar → complete |
 | Errores | Una sola jerarquía unchecked; `errorCode` numérico de ENZONA o del gateway |
 | Dependencias de runtime | Solo Jackson 3 (databind + annotations) |
 

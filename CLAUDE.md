@@ -117,13 +117,13 @@ Base: `{env}/payment/v1.0.0`. Todas las rutas usan Bearer con scope `enzona_busi
 
 ```
 create (status 1113 pendiente) → redirigir al comprador a links[rel=confirm]
-  → el comprador paga en ENZONA → redirección a return_url?transaction_uuid=…  (o a cancel_url)
+  → el comprador paga en ENZONA → redirección a return_url (o a cancel_url)  [ENZONA no añade el uuid: guárdalo tú al crear]
   → el backend hace GET /payments/{uuid} y comprueba importe, merchant_op_id y estado
   → POST /payments/{uuid}/complete (status 1111 aceptada)    | o cancel
 ```
 
 - La PaymentAPI **no tiene webhooks firmados**: la redirección a `return_url` **no es prueba de pago**. El backend siempre consulta el pago y llama a `complete`. Si no se completa, el pago no se cobra (`TODO: VERIFY` el tiempo de expiración).
-- El SDK no aloja endpoints HTTP. Sí aporta un helper `ReturnUrlParser` para extraer `transaction_uuid` de la query (no valida nada por sí mismo) y documentación del flujo.
+- **No hay evidencia de que ENZONA añada `transaction_uuid` al `return_url`**: el SDK Dart detecta el retorno con `url.startsWith(returnUrl)` y consulta el pago con el UUID que ya guardó, y el plugin de WordPress también lo guarda al crear. Por eso el SDK **no** incluye un parser de la URL de retorno: el integrador guarda `transactionUuid` junto a su pedido (o pone su propia referencia en `return_url`, p. ej. `/return?order=123`) y al volver hace `get` → verificar → `complete`. El SDK no aloja endpoints HTTP.
 
 ### 4.3 Códigos de estado y de error
 
@@ -193,7 +193,6 @@ enzona-sdk-java/
     ├── model/      Payment, CreatePaymentRequest, PaymentAmount, AmountDetails, PaymentItem, PaymentLink,
     │               PaymentStatus, PaymentQuery, PaymentPage, Refund, RefundRequest, RefundQuery, RefundPage,
     │               PageInfo, SortOrder
-    ├── flow/       ReturnUrlParser
     └── exception/  EnzonaException y subclases, EnzonaErrorCode
 ```
 

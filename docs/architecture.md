@@ -34,7 +34,6 @@ EnzonaClient ──┬── payments()  PaymentsApi (create, get, list, complet
 | `.auth` | `ClientCredentials`, `Scope`, `AccessTokenProvider`, `OAuthTokenProvider` | public |
 | `.http` | `HttpTransport`, `JdkHttpTransport`, `ApiRequest`, `ApiResponse`, `RetryPolicy` | public (extension points) |
 | `.model` | immutable request and response types | public |
-| `.flow` | `ReturnUrlParser` | public |
 | `.exception` | exception hierarchy, `EnzonaErrorCode` | public |
 | `.internal` | `JsonCodec`, `RequestExecutor`, `ErrorMapper`, `Money`, `UrlEncoding`, `Validation` | not part of the API |
 
@@ -98,7 +97,7 @@ Every operation is defined once and exposed twice: a blocking method (`create`) 
 - The `href` values inside `links` are never called with the token. `confirm` is for the buyer's browser; `complete` and `cancel` are done through the SDK.
 
 ### Payment flow and the lack of webhooks
-PaymentAPI has no signed callbacks. The buyer returns to `return_url`, which proves nothing by itself. The integrator must fetch the payment, compare amount, currency and `merchant_op_id` with the local order, and then call `complete`. `flow.ReturnUrlParser` only extracts the `transaction_uuid` from the return URL. See `docs/payment-flow.md`.
+PaymentAPI has no signed callbacks. The buyer returns to `return_url`, which proves nothing by itself. The integrator must fetch the payment, compare amount, currency and `merchant_op_id` with the local order, and then call `complete`. There is deliberately no helper that parses the return URL: nothing documents that ENZONA appends the `transaction_uuid` to it (the Dart SDK matches the URL by prefix and the WordPress plugin stores the uuid when it creates the payment). Keep the `transactionUuid` next to your order, or put your own order reference in the `returnUrl`, and look the payment up from that. See `docs/payment-flow.md`.
 
 ### Logging
 The core has no logging dependency and logs nothing.
