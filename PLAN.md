@@ -14,7 +14,7 @@
 | M4 – Modelos y PaymentAPI | Completado |
 | M5 – Devoluciones | Completado |
 | M6 – Hardening (async ya incluido en cada operación) | Completado |
-| M7 – Ejemplos consumidores | Pendiente |
+| M7 – Ejemplos consumidores | Completado |
 | M8 – Documentación pública | Pendiente |
 | M9 – CI | Pendiente |
 | M10 – Preparación Maven Central | Pendiente |
