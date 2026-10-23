@@ -39,11 +39,13 @@ public final class EnzonaClient {
     private final Environment environment;
     private final ClientSettings settings;
     private final RequestExecutor executor;
+    private final PaymentsApi payments;
 
     private EnzonaClient(Environment environment, ClientSettings settings) {
         this.environment = environment;
         this.settings = settings;
         this.executor = new RequestExecutor(settings);
+        this.payments = new PaymentsApi(executor);
     }
 
     /**
@@ -53,6 +55,15 @@ public final class EnzonaClient {
      */
     public static Builder builder() {
         return new Builder();
+    }
+
+    /**
+     * Returns the payments operations.
+     *
+     * @return the payments API
+     */
+    public PaymentsApi payments() {
+        return payments;
     }
 
     /**
