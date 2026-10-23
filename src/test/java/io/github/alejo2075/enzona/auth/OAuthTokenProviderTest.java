@@ -266,6 +266,38 @@ class OAuthTokenProviderTest {
     }
 
     @Test
+    void asyncWorksWhenTheTransportAnswersImmediately() {
+        FakeTransport t =
+                FakeTransport.returning(
+                        FakeTransport.json(200, token("instant", "3600")),
+                        FakeTransport.json(200, token("renewed", "3600")));
+        MutableClock clock = MutableClock.startingAt2026();
+        OAuthTokenProvider p = provider(t, clock).build();
+
+        assertEquals("instant", p.accessTokenAsync().join());
+        assertEquals("instant", p.accessTokenAsync().join());
+        assertEquals(1, t.requests().size());
+
+        clock.advance(Duration.ofHours(2));
+        assertEquals("renewed", p.accessTokenAsync().join());
+        assertEquals(2, t.requests().size());
+    }
+
+    @Test
+    void asyncFailureThatCompletesImmediatelyDoesNotLeaveARequestInFlight() {
+        FakeTransport t =
+                FakeTransport.returning(
+                        FakeTransport.json(500, "{}"),
+                        FakeTransport.json(200, token("ok", "3600")));
+        OAuthTokenProvider p = provider(t, MutableClock.startingAt2026()).build();
+
+        CompletionException e =
+                assertThrows(CompletionException.class, () -> p.accessTokenAsync().join());
+        assertInstanceOf(TokenException.class, e.getCause());
+        assertEquals("ok", p.accessTokenAsync().join());
+    }
+
+    @Test
     void asyncFailuresAreTokenExceptionsAndDoNotStickToTheProvider() {
         PendingTransport t = new PendingTransport();
         OAuthTokenProvider p = provider(t, MutableClock.startingAt2026()).build();

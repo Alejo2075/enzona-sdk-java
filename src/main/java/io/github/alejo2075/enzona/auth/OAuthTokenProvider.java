@@ -133,6 +133,7 @@ public final class OAuthTokenProvider implements AccessTokenProvider {
                                             return parse(response);
                                         });
                 inFlight = request;
+                pending = request;
                 request.whenComplete(
                         (token, error) -> {
                             synchronized (lock) {
@@ -144,8 +145,9 @@ public final class OAuthTokenProvider implements AccessTokenProvider {
                                 }
                             }
                         });
+            } else {
+                pending = inFlight;
             }
-            pending = inFlight;
         }
         return pending.thenApply(token -> token.value);
     }
