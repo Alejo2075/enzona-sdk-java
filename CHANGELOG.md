@@ -15,6 +15,8 @@ path, wrong JSON naming, silently empty responses); see `docs/migration-1.x.md` 
   repetition after a gateway 401 with a renewed token.
 - Payments: create (amount computed and validated like the server does), get, list with filters and
   paging, complete and cancel, each with an `...Async` form.
+- Refunds: full and partial refund, get, list with filters and list of one payment's refunds, each
+  with an `...Async` form. Creating a refund is never retried.
 - Typed exception hierarchy with ENZONA and gateway error codes (`EnzonaErrorCode`).
 - Opt-in retry policy for read-only calls only; create, complete and cancel are never retried.
 - Lenient JSON reading (numbers as strings, item name as string or array) and strict writing

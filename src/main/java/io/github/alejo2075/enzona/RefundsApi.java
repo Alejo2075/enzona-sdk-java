@@ -135,4 +135,51 @@ public final class RefundsApi {
         Objects.requireNonNull(query, "query");
         return Operation.get(PAYMENTS + "/refunds", query.toQueryParameters());
     }
+
+    /**
+     * Lists the refunds of one payment. Read-only, so the client's retry policy (if enabled) may
+     * repeat it.
+     *
+     * <p>Only the paging, status, date and order filters of the query are used; the filters that
+     * identify the payment or the merchant are ignored because the payment is part of the path.
+     *
+     * @param transactionUuid the identifier of the payment
+     * @param query the paging and filters
+     * @return one page of refunds
+     */
+    public RefundPage listForPayment(String transactionUuid, RefundQuery query) {
+        return executor.execute(
+                listForPaymentOp(transactionUuid, query), b -> JsonCodec.read(b, RefundPage.class));
+    }
+
+    /**
+     * Lists the refunds of one payment without filters.
+     *
+     * @param transactionUuid the identifier of the payment
+     * @return one page of refunds
+     */
+    public RefundPage listForPayment(String transactionUuid) {
+        return listForPayment(transactionUuid, RefundQuery.builder().build());
+    }
+
+    /**
+     * Asynchronous form of {@link #listForPayment(String, RefundQuery)}.
+     *
+     * @param transactionUuid the identifier of the payment
+     * @param query the paging and filters
+     * @return a future with one page of refunds
+     */
+    public CompletableFuture<RefundPage> listForPaymentAsync(
+            String transactionUuid, RefundQuery query) {
+        return executor.executeAsync(
+                listForPaymentOp(transactionUuid, query), b -> JsonCodec.read(b, RefundPage.class));
+    }
+
+    private static Operation listForPaymentOp(String transactionUuid, RefundQuery query) {
+        Objects.requireNonNull(query, "query");
+        Validation.id(transactionUuid, "transactionUuid");
+        return Operation.get(
+                PAYMENTS + "/" + UrlEncoding.encode(transactionUuid) + "/refunds",
+                query.pagingParameters());
+    }
 }
