@@ -11,6 +11,36 @@
 
   <name>ENZONA Java SDK</name>
   <description>Unofficial, community-maintained, type-safe and framework-agnostic Java SDK for the ENZONA payment API.</description>
+  <url>https://github.com/Alejo2075/enzona-sdk-java</url>
+  <inceptionYear>2024</inceptionYear>
+
+  <licenses>
+    <license>
+      <name>The Apache License, Version 2.0</name>
+      <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <developers>
+    <developer>
+      <id>Alejo2075</id>
+      <name>Alejandro Santana</name>
+      <url>https://github.com/Alejo2075</url>
+    </developer>
+  </developers>
+
+  <scm>
+    <connection>scm:git:https://github.com/Alejo2075/enzona-sdk-java.git</connection>
+    <developerConnection>scm:git:https://github.com/Alejo2075/enzona-sdk-java.git</developerConnection>
+    <url>https://github.com/Alejo2075/enzona-sdk-java</url>
+    <tag>HEAD</tag>
+  </scm>
+
+  <issueManagement>
+    <system>GitHub Issues</system>
+    <url>https://github.com/Alejo2075/enzona-sdk-java/issues</url>
+  </issueManagement>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
