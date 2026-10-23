@@ -13,7 +13,7 @@
 | M3 – Núcleo (errores, auth OAuth2, HTTP, JSON, cliente) | Completado |
 | M4 – Modelos y PaymentAPI | Completado |
 | M5 – Devoluciones | Completado |
-| M6 – Async, flujo de retorno y hardening | Pendiente |
+| M6 – Hardening (async ya incluido en cada operación) | Completado |
 | M7 – Ejemplos consumidores | Pendiente |
 | M8 – Documentación pública | Pendiente |
 | M9 – CI | Pendiente |
