@@ -7,6 +7,8 @@ import io.github.alejo2075.enzona.internal.UrlEncoding;
 import io.github.alejo2075.enzona.internal.Validation;
 import io.github.alejo2075.enzona.model.CreatePaymentRequest;
 import io.github.alejo2075.enzona.model.Payment;
+import io.github.alejo2075.enzona.model.PaymentPage;
+import io.github.alejo2075.enzona.model.PaymentQuery;
 import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
 
@@ -96,5 +98,40 @@ public final class PaymentsApi {
     private static String paymentPath(String transactionUuid, String suffix) {
         Validation.id(transactionUuid, "transactionUuid");
         return PAYMENTS + "/" + UrlEncoding.encode(transactionUuid) + suffix;
+    }
+
+    /**
+     * Lists payments, newest or oldest first depending on the query. Read-only, so the client's
+     * retry policy (if enabled) may repeat it.
+     *
+     * @param query the filters and paging, see {@link PaymentQuery}
+     * @return one page of payments
+     */
+    public PaymentPage list(PaymentQuery query) {
+        return executor.execute(listOp(query), b -> JsonCodec.read(b, PaymentPage.class));
+    }
+
+    /**
+     * Lists payments without filters.
+     *
+     * @return one page of payments, as ENZONA's defaults define it
+     */
+    public PaymentPage list() {
+        return list(PaymentQuery.builder().build());
+    }
+
+    /**
+     * Asynchronous form of {@link #list(PaymentQuery)}.
+     *
+     * @param query the filters and paging
+     * @return a future with one page of payments
+     */
+    public CompletableFuture<PaymentPage> listAsync(PaymentQuery query) {
+        return executor.executeAsync(listOp(query), b -> JsonCodec.read(b, PaymentPage.class));
+    }
+
+    private static Operation listOp(PaymentQuery query) {
+        Objects.requireNonNull(query, "query");
+        return Operation.get(PAYMENTS, query.toQueryParameters());
     }
 }

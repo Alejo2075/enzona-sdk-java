@@ -1,0 +1,26 @@
+{
+  "payments": [
+    {
+      "transaction_uuid": "9f0b2c0c-4f9e-4d6a-9d3c-1a2b3c4d5e6f",
+      "invoice_number": 1001,
+      "status_code": "1111",
+      "status_denom": "Aceptada",
+      "commission": "1.12",
+      "amount": {"total": "112.00", "details": {"shipping": "10.00", "tax": "2.00", "discount": "0.00", "tip": "0.00"}}
+    },
+    {
+      "transaction_uuid": "0a1b2c3d-0000-4000-8000-123456789abc",
+      "invoice_number": "1002",
+      "status_code": 1113,
+      "status_denom": ["Pendiente"],
+      "commission": 0,
+      "amount": {"total": 25, "details": {"shipping": 0, "tax": 0, "discount": 0, "tip": 0}}
+    }
+  ],
+  "pagination": {
+    "first": "https://api.enzona.net/payment/v1.0.0/payments?limit=2&offset=0",
+    "next": "https://api.enzona.net/payment/v1.0.0/payments?limit=2&offset=1",
+    "total": "7",
+    "total_amount": "137.00"
+  }
+}
