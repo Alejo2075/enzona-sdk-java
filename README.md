@@ -12,9 +12,9 @@
 
 > **Unofficial SDK.** This project is community maintained and is not affiliated with, endorsed by or supported by ENZONA or XETID.
 
-> **Status: pre-release.** `2.0.0` is a complete rewrite and **has not been published to Maven Central yet**. See [Installation](#installation) to try it locally. The `1.x` versions on Maven Central never worked against the live API: do not use them ([why](docs/migration-1.x.md)).
+> **Status: `2.0.0` is available on [Maven Central](https://central.sonatype.com/artifact/io.github.alejo2075/enzona-sdk).** It is a complete rewrite and an early release: the contract was reconstructed from community SDKs and has not been validated against the ENZONA sandbox yet (see [Features](#features)). The `1.x` versions never worked against the live API: do not use them ([why](docs/migration-1.x.md)).
 
-![License](https://img.shields.io/badge/license-Apache--2.0-blue) ![Java](https://img.shields.io/badge/Java-17%2B-orange) ![Status](https://img.shields.io/badge/status-pre--release-yellow)
+[![CI](https://github.com/Alejo2075/enzona-sdk-java/actions/workflows/ci.yml/badge.svg)](https://github.com/Alejo2075/enzona-sdk-java/actions/workflows/ci.yml) [![Maven Central](https://img.shields.io/maven-central/v/io.github.alejo2075/enzona-sdk)](https://central.sonatype.com/artifact/io.github.alejo2075/enzona-sdk) ![License](https://img.shields.io/badge/license-Apache--2.0-blue) ![Java](https://img.shields.io/badge/Java-17%2B-orange)
 
 ---
 
@@ -49,13 +49,7 @@ ENZONA publishes its API reference only to registered merchants, so the contract
 
 ## Installation
 
-> **Package status: not yet published to Maven Central.** Until it is, build it locally and depend on the snapshot:
-
-```bash
-git clone https://github.com/Alejo2075/enzona-sdk-java.git
-cd enzona-sdk-java
-./mvnw install -DskipTests      # needs JDK 17 or newer
-```
+Available on Maven Central; no extra repositories are needed. To try unreleased changes from `main`, run `./mvnw install -DskipTests` in a clone and add `mavenLocal()` above `mavenCentral()`.
 
 **Maven**
 
@@ -71,7 +65,6 @@ cd enzona-sdk-java
 
 ```kotlin
 repositories {
-    mavenLocal()      // only until 2.0.0 is released
     mavenCentral()
 }
 
@@ -84,7 +77,6 @@ dependencies {
 
 ```groovy
 repositories {
-    mavenLocal()      // only until 2.0.0 is released
     mavenCentral()
 }
 

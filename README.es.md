@@ -12,9 +12,9 @@
 
 > **SDK no oficial.** Este proyecto lo mantiene la comunidad y no está afiliado, respaldado ni soportado por ENZONA ni por XETID.
 
-> **Estado: pre-lanzamiento.** `2.0.0` es una reescritura completa y **todavía no está publicado en Maven Central**. Mira [Instalación](#instalación) para probarlo en local. Las versiones `1.x` de Maven Central nunca funcionaron contra la API real: no las uses ([por qué](docs/migration-1.x.md)).
+> **Estado: `2.0.0` está disponible en [Maven Central](https://central.sonatype.com/artifact/io.github.alejo2075/enzona-sdk).** Es una reescritura completa y un lanzamiento temprano: el contrato se reconstruyó a partir de SDK de la comunidad y todavía no se ha validado contra el sandbox de ENZONA (mira [Funcionalidades](#funcionalidades)). Las versiones `1.x` nunca funcionaron contra la API real: no las uses ([por qué](docs/migration-1.x.md)).
 
-![Licencia](https://img.shields.io/badge/licencia-Apache--2.0-blue) ![Java](https://img.shields.io/badge/Java-17%2B-orange) ![Estado](https://img.shields.io/badge/estado-pre--lanzamiento-yellow)
+[![CI](https://github.com/Alejo2075/enzona-sdk-java/actions/workflows/ci.yml/badge.svg)](https://github.com/Alejo2075/enzona-sdk-java/actions/workflows/ci.yml) [![Maven Central](https://img.shields.io/maven-central/v/io.github.alejo2075/enzona-sdk)](https://central.sonatype.com/artifact/io.github.alejo2075/enzona-sdk) ![License](https://img.shields.io/badge/licencia-Apache--2.0-blue) ![Java](https://img.shields.io/badge/Java-17%2B-orange)
 
 ---
 
@@ -49,13 +49,7 @@ ENZONA publica la referencia de su API solo para comercios registrados, así que
 
 ## Instalación
 
-> **Estado del paquete: aún no publicado en Maven Central.** Hasta entonces, compílalo en local y depende de la versión snapshot:
-
-```bash
-git clone https://github.com/Alejo2075/enzona-sdk-java.git
-cd enzona-sdk-java
-./mvnw install -DskipTests      # necesita JDK 17 o superior
-```
+Disponible en Maven Central; no hacen falta repositorios adicionales. Para probar cambios de `main` aún sin publicar, ejecuta `./mvnw install -DskipTests` en un clon y añade `mavenLocal()` encima de `mavenCentral()`.
 
 **Maven**
 
@@ -71,7 +65,6 @@ cd enzona-sdk-java
 
 ```kotlin
 repositories {
-    mavenLocal()      // solo hasta que se publique 2.0.0
     mavenCentral()
 }
 
@@ -84,7 +77,6 @@ dependencies {
 
 ```groovy
 repositories {
-    mavenLocal()      // solo hasta que se publique 2.0.0
     mavenCentral()
 }
 

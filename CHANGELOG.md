@@ -6,6 +6,8 @@ Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+_Nothing yet._
+
 ## [2.0.0] - 2026-10-23
 
 Version 2.0.0 is a ground-up rewrite. The 1.x line never worked against the live API (wrong base

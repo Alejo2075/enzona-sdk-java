@@ -75,12 +75,11 @@ jobs:
           version="$(./mvnw -B -ntp -q help:evaluate -Dexpression=project.version -DforceStdout)"
           ./mvnw -B -ntp -f examples/plain-java/pom.xml -Denzona.version="$version" clean verify
           ./mvnw -B -ntp -f examples/return-handler/pom.xml -Denzona.version="$version" clean verify
-      # Until 2.0.0 is on Maven Central the Gradle examples resolve the SDK from mavenLocal().
-      - name: Gradle examples
+      # The Gradle examples consume the artifact published on Maven Central, like any user would.
+      - name: Gradle examples (published release from Maven Central)
         run: |
-          version="$(./mvnw -B -ntp -q help:evaluate -Dexpression=project.version -DforceStdout)"
           for dir in examples/gradle-java examples/gradle-groovy; do
-            (cd "$dir" && ./gradlew --no-daemon test -PenzonaVersion="$version" -Porg.gradle.java.installations.fromEnv=JAVA_HOME_17_X64)
+            (cd "$dir" && ./gradlew --no-daemon test -Porg.gradle.java.installations.fromEnv=JAVA_HOME_17_X64)
           done
 
   wrapper-validation:

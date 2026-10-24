@@ -5,10 +5,8 @@ plugins {
 }
 
 repositories {
-    // Until 2.0.0 is on Maven Central the SDK comes from your local repository:
-    // run `./mvnw install -DskipTests` in the repository root first.
-    // After the release, delete mavenLocal(): mavenCentral() is all a consumer needs.
-    mavenLocal()
+    // The SDK is published on Maven Central: no other repository is needed.
+    // To try unreleased changes, run `./mvnw install -DskipTests` and add mavenLocal() above mavenCentral().
     mavenCentral()
 }
 
