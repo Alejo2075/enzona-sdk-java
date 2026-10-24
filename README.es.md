@@ -1,6 +1,6 @@
 <div align="center">
 
-# ENZONA Java SDK
+<img src="docs/assets/logo-banner.png" alt="ENZONA Java SDK" width="560">
 
 **Un SDK de Java ligero, tipado y sin acoplamiento a frameworks para la API de pagos de ENZONA.**
 
