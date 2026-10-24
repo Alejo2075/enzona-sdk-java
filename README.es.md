@@ -1,9 +1,6 @@
 <div align="center">
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/logo.png">
-  <img src="docs/assets/logo-light.png" alt="ENZONA Java SDK" width="560">
-</picture>
+<img src="docs/assets/logo.png" alt="ENZONA Java SDK" width="560">
 
 **Un SDK de Java ligero, tipado y sin acoplamiento a frameworks para la API de pagos de ENZONA.**
 
