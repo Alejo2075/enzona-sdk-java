@@ -1,13 +1,13 @@
 # Release guide
 
-How to publish the SDK to Maven Central. **Nothing here runs automatically and `2.0.0` has not been published.** Publishing needs the maintainer's explicit decision and several things only the maintainer can provide (see [Human setup required](#human-setup-required)).
+How to publish the SDK to Maven Central. **Nothing here runs automatically.** Publishing needs the maintainer's explicit decision and several things only the maintainer can provide (see [Human setup required](#human-setup-required)).
 
 ## Release history
 
 | Version | Date | Notes |
 |---|---|---|
 | 0.9.5, 1.0 | 2024 | The old implementation. It never worked against the live API (see [migration-1.x.md](migration-1.x.md)). Published versions are immutable, so they stay on Central. |
-| 2.0.0 | not released | The rewrite. Same `groupId` and `artifactId`. |
+| 2.0.0 | 2026-10-23 | The rewrite. Same `groupId` and `artifactId`. Signed with key `BC2FB2385127DC8345884595564BA523FA3BCCF6` (expires 2028-10-22, renew before then). Verified from clean Maven and Gradle consumers that resolve it only from Maven Central, and with `gpg --verify` of every file. Released **before** being validated against the ENZONA sandbox: the contract comes from community SDKs. |
 
 ## Baseline
 
@@ -29,15 +29,15 @@ These steps cannot be done by the build or by an assistant. Tick them as you do 
 
 - [x] Public GitHub repository `Alejo2075/enzona-sdk-java`.
 - [x] Namespace `io.github.alejo2075` verified in the [Central Portal](https://central.sonatype.com/publishing/namespaces) (it is the namespace of the already published `qvapay-java`).
-- [ ] Confirm the license and maintainer data in the POM (`Apache-2.0`, developer *Alejandro Santana*, as in the published 1.x).
-- [ ] A **Portal user token** (Central Portal → Account → *Generate User Token*). The one used for `qvapay-java` works.
+- [x] Confirm the license and maintainer data in the POM (`Apache-2.0`, developer *Alejandro Santana*, as in the published 1.x).
+- [x] A **Portal user token** (Central Portal → Account → *Generate User Token*). The one used for `qvapay-java` works.
 - [x] A GPG key whose public half is on a keyserver (`BC2FB2385127DC8345884595564BA523FA3BCCF6`, created for `qvapay-java`, expires 2028-10-22). Keep the private key out of the repository.
 - [x] GitHub environment `maven-central` in **this** repository, with a required reviewer, limited to protected branches.
-- [ ] Environment secrets `CENTRAL_TOKEN_USERNAME`, `CENTRAL_TOKEN_PASSWORD`, `GPG_PRIVATE_KEY` (ASCII-armored export) and `GPG_PASSPHRASE`. Load them with `gh secret set NAME --env maven-central --repo Alejo2075/enzona-sdk-java`; for the key: `gpg --armor --export-secret-keys BC2FB2385127DC8345884595564BA523FA3BCCF6 | gh secret set GPG_PRIVATE_KEY --env maven-central --repo Alejo2075/enzona-sdk-java`.
+- [x] Environment secrets `CENTRAL_TOKEN_USERNAME`, `CENTRAL_TOKEN_PASSWORD`, `GPG_PRIVATE_KEY` (ASCII-armored export) and `GPG_PASSPHRASE`. Load them with `gh secret set NAME --env maven-central --repo Alejo2075/enzona-sdk-java`; for the key: `gpg --armor --export-secret-keys BC2FB2385127DC8345884595564BA523FA3BCCF6 | gh secret set GPG_PRIVATE_KEY --env maven-central --repo Alejo2075/enzona-sdk-java`.
 - [x] `main` protected: pull request, required status checks, no force-push, linear history. Private vulnerability reporting, secret scanning with push protection and Dependabot alerts enabled.
 - [ ] **Export the Swagger of the Payment API from the ENZONA API Store** into `docs/spec/` and compare it with [api-coverage.md](api-coverage.md). Until this is done the contract rests on community SDKs.
 - [ ] **A manual run against the sandbox** (see below) and the real responses saved, anonymized, as fixtures.
-- [ ] Explicit approval to publish. Each release needs its own.
+- [x] Explicit approval to publish (given for 2.0.0; each release needs its own).
 
 ## One-time machine setup (for local releases)
 
