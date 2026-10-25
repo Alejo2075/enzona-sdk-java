@@ -16,7 +16,7 @@
 | M6 – Hardening (async ya incluido en cada operación) | Completado |
 | M7 – Ejemplos consumidores | Completado |
 | M8 – Documentación pública (falta docs/release.md, va en M10) | Completado |
-| M9 – CI (sin workflow de Pages, opcional) | Completado |
+| M9 – CI y publicación de Javadoc en Pages | Completado |
 | M10 – Preparación Maven Central | Completado |
 | M11 – Release 2.0.0 (gate humano) | Completado: publicado en Maven Central; pendiente la validación contra el sandbox de ENZONA |
 

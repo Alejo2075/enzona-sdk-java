@@ -101,9 +101,9 @@ With sandbox credentials in `ENZONA_CONSUMER_KEY` / `ENZONA_CONSUMER_SECRET` (an
 
 Do not run this against production with real money without a conscious decision.
 
-## Optional: Javadoc site
+## Javadoc site
 
-`qvapay-java` publishes its Javadoc to GitHub Pages with a workflow. This repository does not have one yet; add it only after enabling Pages, and link it from the README.
+The `Publish Javadoc` workflow generates the API reference with Java 17 and publishes it to GitHub Pages on every push to `main`, or on manual dispatch. The project URL is <https://alejo2075.github.io/enzona-sdk-java/>. The GitHub Pages site must be enabled with **GitHub Actions** as its build and deployment source. The repository currently has no custom domain configured.
 
 ## Never
 
