@@ -27,7 +27,7 @@ jobs:
           distribution: temurin
           java-version: '17'
           cache: maven
-      - uses: actions/configure-pages@v5
+      - uses: actions/configure-pages@v6
       - name: Generate Javadoc
         run: ./mvnw -B -ntp -DskipTests javadoc:javadoc
       - uses: actions/upload-pages-artifact@v3
